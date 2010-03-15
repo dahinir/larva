@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
+									<integer>3</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -300,7 +300,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>164 1135 1440 751 -269 900 1920 1200 </string>
+						<string>0 127 1440 751 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>larvaAppDelegate.h</string>
+								<string>larvaAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,19 +326,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>larvaAppDelegate.h</string>
+										<string>larvaAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>67411AD1114CC66C0065ABBC</string>
+										<string>67411AF0114E2CAD0065ABBC</string>
 										<key>history</key>
 										<array>
 											<string>670B16841125A1D600ACDCB0</string>
 											<string>670B16851125A1D600ACDCB0</string>
 											<string>67CBE7B4112BD0A700F7497F</string>
 											<string>67C1519B11390DE900175E43</string>
-											<string>67411AD0114CC66C0065ABBC</string>
-											<string>67411ABC114CC4F50065ABBC</string>
+											<string>67411AEE114E2CAD0065ABBC</string>
+											<string>67411AEF114E2CAD0065ABBC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -352,7 +352,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1232, 510}}</string>
 								<key>RubberWindowFrame</key>
-								<string>164 1135 1440 751 -269 900 1920 1200 </string>
+								<string>0 127 1440 751 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -372,7 +372,7 @@
 								<key>Frame</key>
 								<string>{{0, 515}, {1232, 195}}</string>
 								<key>RubberWindowFrame</key>
-								<string>164 1135 1440 751 -269 900 1920 1200 </string>
+								<string>0 127 1440 751 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -536,7 +536,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>67411AD2114CC66C0065ABBC</string>
+		<string>67411AF1114E2CAD0065ABBC</string>
 		<string>67411AA7114CC1CF0065ABBC</string>
 		<string>67411AA8114CC1CF0065ABBC</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -545,7 +545,7 @@
 		<string>/Users/hci/Documents/workspace/larva/larva.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>164 1135 1440 751 -269 900 1920 1200 </string>
+	<string>0 127 1440 751 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* larvaAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 741}}";
-			sepNavSelRange = "{162, 0}";
-			sepNavVisRange = "{448, 753}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 767}}";
+			sepNavSelRange = "{574, 0}";
+			sepNavVisRange = "{448, 893}";
 			sepNavWindowFrame = "{{-254, 1411}, {833, 684}}";
 		};
 	};
@@ -24,7 +24,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 6752F11D1122BD3300B6785A /* larva */;
-		activeSDKPreference = iphoneos3.1.2;
+		activeSDKPreference = iphonesimulator3.1.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* larva */;
 		codeSenseManager = 6752F1331122BD3800B6785A /* Code sense */;
 		executables = (
@@ -87,6 +87,9 @@
 			67411AC6114CC55B0065ABBC /* PBXTextBookmark */ = 67411AC6114CC55B0065ABBC /* PBXTextBookmark */;
 			67411AD0114CC66C0065ABBC /* PBXTextBookmark */ = 67411AD0114CC66C0065ABBC /* PBXTextBookmark */;
 			67411AD1114CC66C0065ABBC /* PBXTextBookmark */ = 67411AD1114CC66C0065ABBC /* PBXTextBookmark */;
+			67411AEE114E2CAD0065ABBC /* PBXTextBookmark */ = 67411AEE114E2CAD0065ABBC /* PBXTextBookmark */;
+			67411AEF114E2CAD0065ABBC /* PBXTextBookmark */ = 67411AEF114E2CAD0065ABBC /* PBXTextBookmark */;
+			67411AF0114E2CAD0065ABBC /* PBXTextBookmark */ = 67411AF0114E2CAD0065ABBC /* PBXTextBookmark */;
 			67C1519B11390DE900175E43 = 67C1519B11390DE900175E43 /* PlistBookmark */;
 			67C9CFE0114CBDA000658FBB = 67C9CFE0114CBDA000658FBB /* PBXTextBookmark */;
 			67C9CFE1114CBDA000658FBB = 67C9CFE1114CBDA000658FBB /* PBXTextBookmark */;
@@ -277,6 +280,36 @@
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 0;
+	};
+	67411AEE114E2CAD0065ABBC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* larvaAppDelegate.h */;
+		name = "larvaAppDelegate.h: 15";
+		rLen = 0;
+		rLoc = 332;
+		rType = 0;
+		vrLen = 691;
+		vrLoc = 0;
+	};
+	67411AEF114E2CAD0065ABBC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
+		name = "larvaAppDelegate.m: 9";
+		rLen = 0;
+		rLoc = 162;
+		rType = 0;
+		vrLen = 785;
+		vrLoc = 416;
+	};
+	67411AF0114E2CAD0065ABBC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
+		name = "larvaAppDelegate.m: 32";
+		rLen = 0;
+		rLoc = 574;
+		rType = 0;
+		vrLen = 893;
+		vrLoc = 448;
 	};
 	6752F11D1122BD3300B6785A /* larva */ = {
 		isa = PBXExecutable;
