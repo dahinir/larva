@@ -11,16 +11,19 @@
 @interface larvaAppDelegate : NSObject <UIApplicationDelegate, UIAccelerometerDelegate> {
     UIWindow *window;
 	
-	IBOutlet UITextField *acc_x;
-	IBOutlet UITextField *acc_y;
-	IBOutlet UITextField *acc_z;
+	float speedX, speedY, speedZ;
+	float distanceX, distanceY, distanceZ;
+	
+	IBOutlet UITextField *distance_x, *distance_y, *distance_z;
+	IBOutlet UITextField *speed_x, *speed_y, *speed_z;
+	IBOutlet UITextField *acc_x, *acc_y, *acc_z;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet UITextField *acc_x;
-@property (nonatomic, retain) IBOutlet UITextField *acc_y;
-@property (nonatomic, retain) IBOutlet UITextField *acc_z;
+@property (nonatomic, retain) IBOutlet UITextField *distance_x, *distance_y, *distance_z;
+@property (nonatomic, retain) IBOutlet UITextField *speed_x, *speed_y, *speed_z;
+@property (nonatomic, retain) IBOutlet UITextField *acc_x, *acc_y, *acc_z;
 
 - (IBAction) button01pressed:(id)sender;
 - (IBAction) button02pressed:(id)sender;
