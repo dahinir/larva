@@ -275,8 +275,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>1</integer>
+									<integer>10</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>67F20683117CA3200031850B</string>
+										<string>67F206E7117CEF2E0031850B</string>
 										<key>history</key>
 										<array>
 											<string>670B16841125A1D600ACDCB0</string>
@@ -339,8 +339,8 @@
 											<string>67C1519B11390DE900175E43</string>
 											<string>67F2067F117CA3200031850B</string>
 											<string>67F20680117CA3200031850B</string>
-											<string>67F20681117CA3200031850B</string>
-											<string>67F20682117CA3200031850B</string>
+											<string>67F206E5117CEF2E0031850B</string>
+											<string>67F206E6117CEF2E0031850B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -576,7 +576,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {934, 328}}</string>
 								<key>RubberWindowFrame</key>
-								<string>347 166 934 610 0 0 1440 878 </string>
+								<string>95 112 934 610 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -602,7 +602,7 @@
 								<key>Frame</key>
 								<string>{{0, 333}, {934, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>347 166 934 610 0 0 1440 878 </string>
+								<string>95 112 934 610 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -634,7 +634,7 @@
 			<key>WindowContentMinSize</key>
 			<string>486 300</string>
 			<key>WindowString</key>
-			<string>347 166 934 610 0 0 1440 878 </string>
+			<string>95 112 934 610 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>6752F1301122BD3800B6785A</string>
 			<key>WindowToolIsVisible</key>

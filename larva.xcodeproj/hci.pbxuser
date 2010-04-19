@@ -2,16 +2,16 @@
 {
 	1D3623240D0F684500981E51 /* larvaAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {912, 663}}";
-			sepNavSelRange = "{311, 0}";
-			sepNavVisRange = "{36, 1406}";
+			sepNavIntBoundsRect = "{{0, 0}, {912, 676}}";
+			sepNavSelRange = "{356, 0}";
+			sepNavVisRange = "{0, 1222}";
 		};
 	};
 	1D3623250D0F684500981E51 /* larvaAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {894, 1925}}";
-			sepNavSelRange = "{4155, 0}";
-			sepNavVisRange = "{2692, 1232}";
+			sepNavIntBoundsRect = "{{0, 0}, {912, 1991}}";
+			sepNavSelRange = "{2004, 0}";
+			sepNavVisRange = "{1134, 2098}";
 			sepNavWindowFrame = "{{-254, 1411}, {833, 684}}";
 		};
 	};
@@ -97,6 +97,9 @@
 			67F20683117CA3200031850B /* PBXTextBookmark */ = 67F20683117CA3200031850B /* PBXTextBookmark */;
 			67F2068A117CA7440031850B /* PBXTextBookmark */ = 67F2068A117CA7440031850B /* PBXTextBookmark */;
 			67F206D9117CCCEC0031850B /* PBXTextBookmark */ = 67F206D9117CCCEC0031850B /* PBXTextBookmark */;
+			67F206E5117CEF2E0031850B /* PBXTextBookmark */ = 67F206E5117CEF2E0031850B /* PBXTextBookmark */;
+			67F206E6117CEF2E0031850B /* PBXTextBookmark */ = 67F206E6117CEF2E0031850B /* PBXTextBookmark */;
+			67F206E7117CEF2E0031850B /* PBXTextBookmark */ = 67F206E7117CEF2E0031850B /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6752F1321122BD3800B6785A /* Source Control */;
 		userBuildSettings = {
@@ -227,7 +230,7 @@
 		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
 		name = "larvaAppDelegate.m: 53";
 		rLen = 0;
-		rLoc = 1979;
+		rLoc = 2004;
 		rType = 0;
 		vrLen = 2169;
 		vrLoc = 607;
@@ -307,7 +310,7 @@
 		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 146;
+		rLoc = 147;
 		rType = 1;
 	};
 	67F20677117CA1AB0031850B /* PBXTextBookmark */ = {
@@ -315,7 +318,7 @@
 		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
 		name = "larvaAppDelegate.m: 105";
 		rLen = 5;
-		rLoc = 5223;
+		rLoc = 5248;
 		rType = 0;
 		vrLen = 595;
 		vrLoc = 2954;
@@ -393,7 +396,7 @@
 		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
 		name = "larvaAppDelegate.m: 114";
 		rLen = 0;
-		rLoc = 4155;
+		rLoc = 4180;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 3635;
@@ -403,9 +406,39 @@
 		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
 		name = "larvaAppDelegate.m: 114";
 		rLen = 0;
-		rLoc = 4155;
+		rLoc = 4180;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 2692;
+	};
+	67F206E5117CEF2E0031850B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* larvaAppDelegate.h */;
+		name = "larvaAppDelegate.h: 16";
+		rLen = 0;
+		rLoc = 356;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 0;
+	};
+	67F206E6117CEF2E0031850B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
+		name = "larvaAppDelegate.m: 30";
+		rLen = 0;
+		rLoc = 627;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 26;
+	};
+	67F206E7117CEF2E0031850B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* larvaAppDelegate.m */;
+		name = "larvaAppDelegate.m: 74";
+		rLen = 0;
+		rLoc = 2004;
+		rType = 0;
+		vrLen = 2098;
+		vrLoc = 1134;
 	};
 }
