@@ -14,35 +14,39 @@
 {
     UIWindow *window;
 	
+	// at refactoring
+	// xAccel,yAccel, zTesla ...
+	
 	// accelerometer
 	int temp;
-	float accelX, accelY, accelZ;
-	float speedX, speedY, speedZ;
-	float distanceX, distanceY, distanceZ;
-	IBOutlet UITextField *distance_x, *distance_y, *distance_z;
-	IBOutlet UITextField *speed_x, *speed_y, *speed_z;
-	IBOutlet UITextField *acc_x, *acc_y, *acc_z;
+	float xAcceleration, yAcceleration, zAcceleration;
+	float xVelocity, yVelocity, zVelocity;
+	float xDistance, yDistance, zDistance;
+	UILabel *xDistanceLabel, *yDistanceLabel, *zDistanceLabel;
+	UILabel *xVelocityLabel, *yVelocityLabel, *zVelocityLabel;
+	UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 	
 	// teslameter
+	float xTesla, yTesla, zTesla;
 	UILabel *magnitudeLabel;
-	UILabel *xLabel;
-	UILabel *yLabel;
-	UILabel *zLabel;
+	UILabel *xTeslaLabel;
+	UILabel *yTeslaLabel;
+	UILabel *zTeslaLabel;
 	CLLocationManager *locationManager;	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 // accelerometer
-@property (nonatomic, retain) IBOutlet UITextField *distance_x, *distance_y, *distance_z;
-@property (nonatomic, retain) IBOutlet UITextField *speed_x, *speed_y, *speed_z;
-@property (nonatomic, retain) IBOutlet UITextField *acc_x, *acc_y, *acc_z;
+@property (nonatomic, retain) IBOutlet UILabel *xDistanceLabel, *yDistanceLabel, *zDistanceLabel;
+@property (nonatomic, retain) IBOutlet UILabel *xVelocityLabel, *yVelocityLabel, *zVelocityLabel;
+@property (nonatomic, retain) IBOutlet UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 
 // teslameter
 @property (nonatomic, retain) IBOutlet UILabel *magnitudeLabel;
-@property (nonatomic, retain) IBOutlet UILabel *xLabel;
-@property (nonatomic, retain) IBOutlet UILabel *yLabel;
-@property (nonatomic, retain) IBOutlet UILabel *zLabel;
+@property (nonatomic, retain) IBOutlet UILabel *xTeslaLabel;
+@property (nonatomic, retain) IBOutlet UILabel *yTeslaLabel;
+@property (nonatomic, retain) IBOutlet UILabel *zTeslaLabel;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
 - (IBAction) button01pressed:(id)sender;

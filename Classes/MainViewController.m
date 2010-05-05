@@ -14,16 +14,16 @@
 @synthesize window;
 
 /* accelerometer */
-@synthesize distance_x, distance_y, distance_z;
-@synthesize speed_x, speed_y, speed_z;
-@synthesize acc_x, acc_y, acc_z;
+@synthesize xDistanceLabel, yDistanceLabel, zDistanceLabel;
+@synthesize xVelocityLabel, yVelocityLabel, zVelocityLabel;
+@synthesize xAccelerationLabel, yAccelerationLabel, zAccelerationLabel;
 #define kFilteringFactor 0.1
 
 /* teslameter */
 @synthesize magnitudeLabel;
-@synthesize xLabel;
-@synthesize yLabel;
-@synthesize zLabel;
+@synthesize xTeslaLabel;
+@synthesize yTeslaLabel;
+@synthesize zTeslaLabel;
 @synthesize locationManager;
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -98,35 +98,38 @@
 	// 하이패스 필터와 중력 필터는 다르다.
 	// low pass filter isolate the effects of gravity
 	// high pass fileter that u can use to remove the effects of gravity
-	accelX = acceleration.x - ( (acceleration.x * kFilteringFactor) + (accelX * (1.0 - kFilteringFactor)) );
-    accelY = acceleration.y - ( (acceleration.y * kFilteringFactor) + (accelY * (1.0 - kFilteringFactor)) );
-    accelZ = acceleration.z - ( (acceleration.z * kFilteringFactor) + (accelZ * (1.0 - kFilteringFactor)) );
-	[acc_x setText:[NSString stringWithFormat:@"%.4f", accelX ]];
-	[acc_y setText:[NSString stringWithFormat:@"%.4f", accelY ]];
-	[acc_z setText:[NSString stringWithFormat:@"%.4f", accelZ ]];
+	xAcceleration = acceleration.x - ( (acceleration.x * kFilteringFactor) + (xAcceleration * (1.0 - kFilteringFactor)) );
+    yAcceleration = acceleration.y - ( (acceleration.y * kFilteringFactor) + (yAcceleration * (1.0 - kFilteringFactor)) );
+    zAcceleration = acceleration.z - ( (acceleration.z * kFilteringFactor) + (zAcceleration * (1.0 - kFilteringFactor)) );
+	[xAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", xAcceleration ]];
+	[yAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", yAcceleration ]];
+	[zAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", zAcceleration ]];
 	
-	speedX = speedX + accelX*kFilteringFactor;
-	speedY = speedY + accelY*kFilteringFactor;
-	speedZ = speedZ + accelZ*kFilteringFactor;
-	[speed_x setText:[NSString stringWithFormat:@"%.4f", speedX ]];
-	[speed_y setText:[NSString stringWithFormat:@"%.4f", speedY ]];
-	[speed_z setText:[NSString stringWithFormat:@"%.4f", speedZ ]];
+	xVelocity = xVelocity + xAcceleration*kFilteringFactor;
+	yVelocity = yVelocity + yAcceleration*kFilteringFactor;
+	zVelocity = zVelocity + zAcceleration*kFilteringFactor;
+	[xVelocityLabel setText:[NSString stringWithFormat:@"%.4f", xVelocity ]];
+	[yVelocityLabel setText:[NSString stringWithFormat:@"%.4f", yVelocity ]];
+	[zVelocityLabel setText:[NSString stringWithFormat:@"%.4f", zVelocity ]];
 	
-	distanceX = distanceX + speedX*kFilteringFactor;
-	distanceY = distanceY + speedY*kFilteringFactor;
-	distanceZ = distanceZ + speedZ*kFilteringFactor;
-	[distance_x setText:[NSString stringWithFormat:@"%.4f", distanceX ]];
-	[distance_y setText:[NSString stringWithFormat:@"%.4f", distanceY ]];
-	[distance_z setText:[NSString stringWithFormat:@"%.4f", distanceZ ]];
+	xDistance = xDistance + xVelocity*kFilteringFactor;
+	yDistance = yDistance + yVelocity*kFilteringFactor;
+	zDistance = zDistance + zVelocity*kFilteringFactor;
+	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", xDistance ]];
+	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
+	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
 }
 
 /* teslameter */
 // This delegate method is invoked when the location manager has heading data.
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
     // Update the labels with the raw x, y, and z values.
-	[xLabel setText:[NSString stringWithFormat:@"%.1f", heading.x]];
-	[yLabel setText:[NSString stringWithFormat:@"%.1f", heading.y]];
-	[zLabel setText:[NSString stringWithFormat:@"%.1f", heading.z]];
+	xTesla = heading.x;
+	yTesla = heading.y;
+	zTesla = heading.z;
+	[xTeslaLabel setText:[NSString stringWithFormat:@"%.2f", xTesla]];
+	[yTeslaLabel setText:[NSString stringWithFormat:@"%.2f", yTesla]];
+	[zTeslaLabel setText:[NSString stringWithFormat:@"%.2f", zTesla]];
 	
     // Compute and display the magnitude (size or strength) of the vector.
 	//      magnitude = sqrt(x^2 + y^2 + z^2)
@@ -152,10 +155,10 @@
 /* buttons */
 - (IBAction) button01pressed:(id)sender {
 	/* accelerometer */
-	acc_x.text= @"haha";
-	accelX = 0; accelY = 0; accelZ = 0;
-	speedX = 0; speedY = 0; speedZ = 0;
-	distanceX = 0; distanceY = 0; distanceZ = 0;
+	xAccelerationLabel.text= @"haha";
+	xAcceleration = 0; yAcceleration = 0; zAcceleration = 0;
+	xVelocity = 0; yVelocity = 0; zVelocity = 0;
+	xDistance = 0; yDistance = 0; zDistance = 0;
 	[self configureAccelerometer];
 	
 	/* teslameter */
@@ -175,9 +178,9 @@
 - (void)dealloc {	
 	/* teslameter */
 	[magnitudeLabel release];
-	[xLabel release];
-	[yLabel release];
-	[zLabel release];
+	[xTeslaLabel release];
+	[yTeslaLabel release];
+	[zTeslaLabel release];
 	// Stop the compass
 	[locationManager stopUpdatingHeading];
     [locationManager release];
