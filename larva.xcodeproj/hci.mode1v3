@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MainViewController.h</string>
+								<string>MainViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MainViewController.h</string>
+										<string>MainViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>67C6F0FE11918D7F002F54E7</string>
+										<string>67C6F10A119192E8002F54E7</string>
 										<key>history</key>
 										<array>
 											<string>67CBE7B4112BD0A700F7497F</string>
@@ -339,8 +339,8 @@
 											<string>67FF2A77118B68B600A0247E</string>
 											<string>67FBF993118E86D800E8479B</string>
 											<string>67FBF994118E86D800E8479B</string>
-											<string>67C6F0C111918C2F002F54E7</string>
-											<string>67C6F0C211918C2F002F54E7</string>
+											<string>67C6F108119192E8002F54E7</string>
+											<string>67C6F109119192E8002F54E7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -538,14 +538,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>67C6F0CD11918CC4002F54E7</string>
+		<string>67C6F10B119192E8002F54E7</string>
 		<string>67C6F089119168DD002F54E7</string>
 		<string>67C6F08A119168DD002F54E7</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>67403CFD115B8FDE0042C6F9</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6752F1301122BD3800B6785A</string>
 		<string>/Users/hci/Documents/workspace/larva/larva.xcodeproj</string>
-		<string>67403CFD115B8FDE0042C6F9</string>
 	</array>
 	<key>WindowString</key>
 	<string>438 127 1001 751 0 0 1440 878 </string>
@@ -1420,18 +1420,13 @@
 				<string>67403CFD115B8FDE0042C6F9</string>
 				<string>67C6F082119168DD002F54E7</string>
 				<string>67403CFC115B8FDE0042C6F9</string>
-				<string>67C6F0FF11918D7F002F54E7</string>
-				<string>67C6F10011918D7F002F54E7</string>
-				<string>67C6F10111918D7F002F54E7</string>
-				<string>67C6F10211918D7F002F54E7</string>
-				<string>67C6F10311918D7F002F54E7</string>
 			</array>
 			<key>WindowString</key>
 			<string>20 322 750 435 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>67403CFD115B8FDE0042C6F9</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

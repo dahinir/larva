@@ -153,6 +153,8 @@
 
 
 /* buttons */
+
+// initialize variables
 - (IBAction) button01pressed:(id)sender {
 	/* accelerometer */
 	xAccelerationLabel.text= @"haha";
@@ -162,6 +164,7 @@
 	[self configureAccelerometer];
 	
 	/* teslameter */
+	xTesla = 0; yTesla = 0; zTesla = 0;
 	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
 	// heading service configuration
 	locationManager.headingFilter = kCLHeadingFilterNone;
