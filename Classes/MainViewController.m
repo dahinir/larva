@@ -19,12 +19,23 @@
 @synthesize xAccelerationLabel, yAccelerationLabel, zAccelerationLabel;
 #define kFilteringFactor 0.1
 
+/* CLLocationManager */
+@synthesize locationManager;
+
 /* teslameter */
 @synthesize magnitudeLabel;
 @synthesize xTeslaLabel;
 @synthesize yTeslaLabel;
 @synthesize zTeslaLabel;
-@synthesize locationManager;
+
+/* GPS */
+@synthesize startingPoint;
+@synthesize latitudeLabel;
+@synthesize longitudeLabel;
+@synthesize horizontalAccuracyLabel;
+@synthesize altitudeLabel;
+@synthesize verticalAccuracyLabel;
+@synthesize distanceTraveledLabel;
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -150,6 +161,39 @@
     }
 }
 
+/* GPS */
+- (void)locationManager:(CLLocationManager *)manager
+		didUpdateToLocation:(CLLocation *)newLocation
+		fromLocation:(CLLocation *)oldLocation {
+	if (startingPoint == nil)
+		self.startingPoint = newLocation;
+	
+	NSString *latitudeString = [[NSString alloc] initWithFormat:@"%g°", newLocation.coordinate.latitude];
+	latitudeLabel.text = latitudeString;
+	[latitudeString release];
+	
+	NSString *longitudeString = [[NSString alloc] initWithFormat:@"%g°", newLocation.coordinate.longitude];
+	longitudeLabel.text = longitudeString;
+	[longitudeString release];
+	
+	NSString *horizontalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", newLocation.horizontalAccuracy];
+	horizontalAccuracyLabel.text = horizontalAccuracyString;
+	[horizontalAccuracyString release];
+	
+	NSString *altitudeString = [[NSString alloc] initWithFormat:@"%gm", newLocation.altitude];
+	altitudeLabel.text = altitudeString;
+	[altitudeString release];
+	
+	NSString *verticalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", newLocation.verticalAccuracy];
+	verticalAccuracyLabel.text = verticalAccuracyString;
+	[verticalAccuracyString release];
+	
+	CLLocationDistance distance = [newLocation getDistanceFrom:startingPoint];
+	NSString *distanceString = [[NSString alloc] initWithFormat:@"%gm", distance];
+	distanceTraveledLabel.text = distanceString;
+	[distanceString release];
+}
+
 
 
 /* buttons */
@@ -163,15 +207,21 @@
 	xDistance = 0; yDistance = 0; zDistance = 0;
 	[self configureAccelerometer];
 	
-	/* teslameter */
-	xTesla = 0; yTesla = 0; zTesla = 0;
+	/* CLLocation */
 	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-	// heading service configuration
-	locationManager.headingFilter = kCLHeadingFilterNone;
 	// setup delegate callbacks
 	locationManager.delegate = self;
+	
+	/* teslameter */
+	xTesla = 0; yTesla = 0; zTesla = 0;
+	// heading service configuration
+	locationManager.headingFilter = kCLHeadingFilterNone;
 	// start the compass
 	[locationManager startUpdatingHeading];
+	
+	/* GPS */
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	[locationManager startUpdatingLocation];
 }
 
 - (IBAction) button02pressed:(id)sender {
@@ -187,6 +237,15 @@
 	// Stop the compass
 	[locationManager stopUpdatingHeading];
     [locationManager release];
+	
+	/* GPS */
+	[startingPoint release];
+	[latitudeLabel release];
+	[longitudeLabel release];
+	[horizontalAccuracyLabel release];
+	[altitudeLabel release];
+	[verticalAccuracyLabel release];
+	[distanceTraveledLabel release];
 	
 	/* default */
 	[window release];

@@ -19,6 +19,18 @@
 	[window addSubview:viewController.view];
 }
 
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	NSLog(@"hey got a memory warning!");
+}
+
+-(void)applicationWillResignActive:(UIApplication *)application {
+	NSLog(@"hey I'm about to resign active status..");
+}
+
+-(void)applicationDidBecomeActive:(UIApplication *)application {
+	NSLog(@"welcome back!");
+}
+
 // Release resoures
 -(void)dealloc
 {

@@ -26,13 +26,23 @@
 	UILabel *xVelocityLabel, *yVelocityLabel, *zVelocityLabel;
 	UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 	
+	CLLocationManager *locationManager;	
+	CLLocation *startingPoint;
+	
 	// teslameter
 	float xTesla, yTesla, zTesla;
 	UILabel *magnitudeLabel;
 	UILabel *xTeslaLabel;
 	UILabel *yTeslaLabel;
 	UILabel *zTeslaLabel;
-	CLLocationManager *locationManager;	
+	
+	// GPS
+	UILabel *latitudeLabel;
+	UILabel *longitudeLabel;
+	UILabel *horizontalAccuracyLabel;
+	UILabel *altitudeLabel;
+	UILabel *verticalAccuracyLabel;
+	UILabel *distanceTraveledLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -42,12 +52,23 @@
 @property (nonatomic, retain) IBOutlet UILabel *xVelocityLabel, *yVelocityLabel, *zVelocityLabel;
 @property (nonatomic, retain) IBOutlet UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 
+// CLLocationManager
+@property (nonatomic, retain) CLLocationManager *locationManager;
+
 // teslameter
 @property (nonatomic, retain) IBOutlet UILabel *magnitudeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *xTeslaLabel;
 @property (nonatomic, retain) IBOutlet UILabel *yTeslaLabel;
 @property (nonatomic, retain) IBOutlet UILabel *zTeslaLabel;
-@property (nonatomic, retain) CLLocationManager *locationManager;
+
+// GPS
+@property (retain, nonatomic) CLLocation *startingPoint;
+@property (retain, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *longitudeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *horizontalAccuracyLabel;
+@property (retain, nonatomic) IBOutlet UILabel *altitudeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *verticalAccuracyLabel;
+@property (retain, nonatomic) IBOutlet UILabel *distanceTraveledLabel;
 
 - (IBAction) button01pressed:(id)sender;
 - (IBAction) button02pressed:(id)sender;
