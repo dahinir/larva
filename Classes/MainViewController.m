@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 
+#import "SOAPClient.h"
 
 @implementation MainViewController
 
@@ -17,7 +18,8 @@
 @synthesize xDistanceLabel, yDistanceLabel, zDistanceLabel;
 @synthesize xVelocityLabel, yVelocityLabel, zVelocityLabel;
 @synthesize xAccelerationLabel, yAccelerationLabel, zAccelerationLabel;
-#define kFilteringFactor 0.1
+#define kFilteringFactor	0.1		// as 10 millisecond, 100 is max (10 milliseconds)
+#define kUpdateFrequency	60.0
 
 /* CLLocationManager */
 @synthesize locationManager;
@@ -36,6 +38,8 @@
 @synthesize altitudeLabel;
 @synthesize verticalAccuracyLabel;
 @synthesize distanceTraveledLabel;
+
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -59,6 +63,8 @@
 	
 	// Override point for customization after application launch
 	[window makeKeyAndVisible];
+	
+	temp = 0;
 }
 
 
@@ -86,7 +92,7 @@
 // accelerometer configure
 -(void)configureAccelerometer {
     UIAccelerometer*  theAccelerometer = [UIAccelerometer sharedAccelerometer];
-    theAccelerometer.updateInterval = kFilteringFactor;	// as 10 millisecond, 100 is max (10 milliseconds)
+    theAccelerometer.updateInterval = kFilteringFactor;	
     theAccelerometer.delegate = self;
     // Delegate events begin immediately.
 }
@@ -129,6 +135,15 @@
 	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", xDistance ]];
 	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
 	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
+	
+	/* for network log */
+	temp = temp + 1;
+	if (temp == 10) {
+		temp = 0;
+		UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"haha" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
+		[myAlert show];
+	}
+	//NSLog([NSString stringWithFormat:@"%.2f", temp]);
 }
 
 /* teslameter */
@@ -192,6 +207,9 @@
 	NSString *distanceString = [[NSString alloc] initWithFormat:@"%gm", distance];
 	distanceTraveledLabel.text = distanceString;
 	[distanceString release];
+	
+	/* for network log */
+
 }
 
 
@@ -200,8 +218,10 @@
 
 // initialize variables
 - (IBAction) button01pressed:(id)sender {
+	NSLog(@"button 01 pressed!!");
+	
 	/* accelerometer */
-	xAccelerationLabel.text= @"haha";
+	xAccelerationLabel.text= @"yeah!";
 	xAcceleration = 0; yAcceleration = 0; zAcceleration = 0;
 	xVelocity = 0; yVelocity = 0; zVelocity = 0;
 	xDistance = 0; yDistance = 0; zDistance = 0;
@@ -225,6 +245,13 @@
 }
 
 - (IBAction) button02pressed:(id)sender {
+	xAccelerationLabel.text= @"second!";
+	NSLog(@"button 02 pressed!!");
+
+	
+	/* network test */
+	SOAPClient *client = [SOAPClient alloc];
+	[client sendMessage:@"dummy" waitForReply:FALSE];
 }
 
 

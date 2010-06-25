@@ -14,9 +14,12 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		670A85381196BD12004B8CB2 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670A85371196BD12004B8CB2 /* MainViewController.xib */; };
 		6759E32911A10B7900140BDC /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6759E32811A10B7900140BDC /* AccelerometerFilter.m */; };
+		676EE6FD11CE00B6002CA8F3 /* SensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 676EE6FC11CE00B6002CA8F3 /* SensorData.m */; };
 		67A7BDAD11823B7900F64912 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A7BDAC11823B7900F64912 /* AppDelegate.m */; };
 		67CD8F651174A6EE00DF2E5A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CD8F641174A6EE00DF2E5A /* MainViewController.m */; };
 		67F206D6117CCCE80031850B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F206D5117CCCE80031850B /* CoreLocation.framework */; };
+		67F2FE2311D329860013FD9F /* SOAPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F2FE2211D329860013FD9F /* SOAPClient.m */; };
+		67F2FE2E11D329AB0013FD9F /* MyURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F2FE2D11D329AB0013FD9F /* MyURLConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,11 +33,17 @@
 		670A85371196BD12004B8CB2 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		6759E32711A10B7900140BDC /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		6759E32811A10B7900140BDC /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
+		676EE6FB11CE00B6002CA8F3 /* SensorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorData.h; sourceTree = "<group>"; };
+		676EE6FC11CE00B6002CA8F3 /* SensorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorData.m; sourceTree = "<group>"; };
 		67A7BDAB11823B7900F64912 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		67A7BDAC11823B7900F64912 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		67CD8F631174A6EE00DF2E5A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		67CD8F641174A6EE00DF2E5A /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		67F206D5117CCCE80031850B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		67F2FE2111D329860013FD9F /* SOAPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOAPClient.h; path = ../CocoaSOAP/SOAPClient.h; sourceTree = SOURCE_ROOT; };
+		67F2FE2211D329860013FD9F /* SOAPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOAPClient.m; path = ../CocoaSOAP/SOAPClient.m; sourceTree = SOURCE_ROOT; };
+		67F2FE2C11D329AB0013FD9F /* MyURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyURLConnection.h; path = ../CocoaSOAP/MyURLConnection.h; sourceTree = SOURCE_ROOT; };
+		67F2FE2D11D329AB0013FD9F /* MyURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyURLConnection.m; path = ../CocoaSOAP/MyURLConnection.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* larva-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "larva-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +71,12 @@
 				67CD8F641174A6EE00DF2E5A /* MainViewController.m */,
 				67A7BDAB11823B7900F64912 /* AppDelegate.h */,
 				67A7BDAC11823B7900F64912 /* AppDelegate.m */,
+				676EE6FB11CE00B6002CA8F3 /* SensorData.h */,
+				676EE6FC11CE00B6002CA8F3 /* SensorData.m */,
+				67F2FE2C11D329AB0013FD9F /* MyURLConnection.h */,
+				67F2FE2D11D329AB0013FD9F /* MyURLConnection.m */,
+				67F2FE2111D329860013FD9F /* SOAPClient.h */,
+				67F2FE2211D329860013FD9F /* SOAPClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -185,6 +200,9 @@
 				67CD8F651174A6EE00DF2E5A /* MainViewController.m in Sources */,
 				67A7BDAD11823B7900F64912 /* AppDelegate.m in Sources */,
 				6759E32911A10B7900140BDC /* AccelerometerFilter.m in Sources */,
+				676EE6FD11CE00B6002CA8F3 /* SensorData.m in Sources */,
+				67F2FE2311D329860013FD9F /* SOAPClient.m in Sources */,
+				67F2FE2E11D329AB0013FD9F /* MyURLConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
