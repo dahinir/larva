@@ -9,16 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "SensorData.h"
+#import "SOAPClient.h"
+
+/* network log */
+#define kLogFrequency	100	// send log throgh network every 100 sample
 
 @interface MainViewController : UIViewController<UIAccelerometerDelegate, CLLocationManagerDelegate> 
 {
     UIWindow *window;
 	
-	// at refactoring
-	// xAccel,yAccel, zTesla ...
+	UILabel *testLabel, *testLabel2;
 	
+	/* at refactoring	 xAccel,yAccel, zTesla ... */
 	// accelerometer
-	int temp;
 	float xAcceleration, yAcceleration, zAcceleration;
 	float xVelocity, yVelocity, zVelocity;
 	float xDistance, yDistance, zDistance;
@@ -43,9 +47,16 @@
 	UILabel *altitudeLabel;
 	UILabel *verticalAccuracyLabel;
 	UILabel *distanceTraveledLabel;
+	
+	/* for data log */
+	int sampleCount01, sampleCount02, temp;
+	SOAPClient *client;
+	SensorData *sensorDatas[kLogFrequency];
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+@property (nonatomic, retain) IBOutlet UILabel *testLabel, *testLabel2;
 
 // accelerometer
 @property (nonatomic, retain) IBOutlet UILabel *xDistanceLabel, *yDistanceLabel, *zDistanceLabel;
@@ -62,13 +73,13 @@
 @property (nonatomic, retain) IBOutlet UILabel *zTeslaLabel;
 
 // GPS
-@property (retain, nonatomic) CLLocation *startingPoint;
-@property (retain, nonatomic) IBOutlet UILabel *latitudeLabel;
-@property (retain, nonatomic) IBOutlet UILabel *longitudeLabel;
-@property (retain, nonatomic) IBOutlet UILabel *horizontalAccuracyLabel;
-@property (retain, nonatomic) IBOutlet UILabel *altitudeLabel;
-@property (retain, nonatomic) IBOutlet UILabel *verticalAccuracyLabel;
-@property (retain, nonatomic) IBOutlet UILabel *distanceTraveledLabel;
+@property (nonatomic, retain) CLLocation *startingPoint;
+@property (nonatomic, retain) IBOutlet UILabel *latitudeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *longitudeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *horizontalAccuracyLabel;
+@property (nonatomic, retain) IBOutlet UILabel *altitudeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *verticalAccuracyLabel;
+@property (nonatomic, retain) IBOutlet UILabel *distanceTraveledLabel;
 
 - (IBAction) button01pressed:(id)sender;
 - (IBAction) button02pressed:(id)sender;

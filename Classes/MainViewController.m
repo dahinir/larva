@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 
-#import "SOAPClient.h"
 
 @implementation MainViewController
 
@@ -18,8 +17,8 @@
 @synthesize xDistanceLabel, yDistanceLabel, zDistanceLabel;
 @synthesize xVelocityLabel, yVelocityLabel, zVelocityLabel;
 @synthesize xAccelerationLabel, yAccelerationLabel, zAccelerationLabel;
-#define kFilteringFactor	0.1		// as 10 millisecond, 100 is max (10 milliseconds)
-#define kUpdateFrequency	60.0
+#define kFilteringFactor	0.1		// filtering factor to generate a value that uses 10 percent of the unfiltered acceleration data and 90 percent of the previously filtered value.
+#define kAccelerometerFrequency	50.0	// (50Hz) 100 is max (10 milliseconds)
 
 /* CLLocationManager */
 @synthesize locationManager;
@@ -38,6 +37,9 @@
 @synthesize altitudeLabel;
 @synthesize verticalAccuracyLabel;
 @synthesize distanceTraveledLabel;
+
+/* network log */
+@synthesize testLabel, testLabel2;
 
 
 /*
@@ -63,8 +65,6 @@
 	
 	// Override point for customization after application launch
 	[window makeKeyAndVisible];
-	
-	temp = 0;
 }
 
 
@@ -92,7 +92,7 @@
 // accelerometer configure
 -(void)configureAccelerometer {
     UIAccelerometer*  theAccelerometer = [UIAccelerometer sharedAccelerometer];
-    theAccelerometer.updateInterval = kFilteringFactor;	
+	theAccelerometer.updateInterval = 1 / kAccelerometerFrequency;
     theAccelerometer.delegate = self;
     // Delegate events begin immediately.
 }
@@ -135,12 +135,29 @@
 	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", xDistance ]];
 	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
 	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
+
 	
 	/* for network log */
-	temp = temp + 1;
-	if (temp == 10) {
-		temp = 0;
-		UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"haha" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
+	sensorDatas[sampleCount01].sampleCount = sampleCount01;
+	
+	sensorDatas[sampleCount01].xAcceleration = xAcceleration;
+	sensorDatas[sampleCount01].yAcceleration = yAcceleration;
+	sensorDatas[sampleCount01].zAcceleration = zAcceleration;
+	
+	sensorDatas[sampleCount01].xVelocity = xVelocity;
+	sensorDatas[sampleCount01].yVelocity = yVelocity;
+	sensorDatas[sampleCount01].zVelocity = zVelocity;
+	
+	sensorDatas[sampleCount01].xDistance = xDistance;
+	sensorDatas[sampleCount01].yDistance = yDistance;
+	sensorDatas[sampleCount01].zDistance = zDistance;
+	
+	testLabel.text = [[NSString alloc] initWithFormat:@"accel called : %i", sampleCount01 ];
+	
+	sampleCount01++;
+	if (sampleCount01 == kLogFrequency) {
+		sampleCount01 = 0;
+		UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"100!!" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
 		[myAlert show];
 	}
 	//NSLog([NSString stringWithFormat:@"%.2f", temp]);
@@ -164,6 +181,11 @@
 	
 	// Update the graph with the new magnetic reading.
 	// [graphView updateHistoryWithX:heading.x y:heading.y z:heading.z];
+	
+	
+	/* for network log */
+	testLabel2.text = [[NSString alloc] initWithFormat:@"tesla called : %i", sampleCount02 ];
+	sampleCount02++;
 }
 
 // This delegate method is invoked when the location managed encounters an error condition.
@@ -242,16 +264,29 @@
 	/* GPS */
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	[locationManager startUpdatingLocation];
+
+	/* for data log */
+	// client = [[SOAPClient alloc] init];
+	temp = 0;
+	sampleCount01 = 0;
+	sampleCount02 = 0;
+	for (int i=0; i<kLogFrequency; i++) {
+		// sensorDatas[i] = [[[SensorData alloc] init] autorelease];
+		sensorDatas[i] = [[SensorData alloc] init];
+	}
+	testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %i", -22];
+	sensorDatas[3].sampleCount = 78;
 }
 
 - (IBAction) button02pressed:(id)sender {
 	xAccelerationLabel.text= @"second!";
 	NSLog(@"button 02 pressed!!");
-
 	
-	/* network test */
-	SOAPClient *client = [SOAPClient alloc];
+	/* network test 
+	client = [[SOAPClient alloc] init];
 	[client sendMessage:@"dummy" waitForReply:FALSE];
+	[client release];
+	 */
 }
 
 
@@ -273,6 +308,11 @@
 	[altitudeLabel release];
 	[verticalAccuracyLabel release];
 	[distanceTraveledLabel release];
+	
+	/* network log */
+	for (int i=0; i<kLogFrequency; i++) {
+		[sensorDatas[i] release];
+	}
 	
 	/* default */
 	[window release];

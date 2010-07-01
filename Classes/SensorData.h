@@ -10,17 +10,39 @@
 
 
 @interface SensorData : NSObject {
+	/* not for this
     NSString *title;
     NSString *artist;
     NSString *album;
     NSDate *releaseDate;
     NSString *category;
+*/
+	
+	/* real */
+	int sampleCount;
+	
+	float xAcceleration, yAcceleration, zAcceleration;
+	float xTesla, yTesla, zTesla;
+	
+	float xVelocity, yVelocity, zVelocity;
+	float xDistance, yDistance, zDistance;
 }
 
+/* not for this 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *artist;
 @property (nonatomic, copy) NSString *album;
 @property (nonatomic, copy) NSDate *releaseDate;
 @property (nonatomic, copy) NSString *category;
+*/
+ 
+/* real */
+@property int sampleCount;
+
+@property float xAcceleration, yAcceleration, zAcceleration;
+@property float xTesla, yTesla, zTesla;
+
+@property float xVelocity, yVelocity, zVelocity;
+@property float xDistance, yDistance, zDistance;
 
 @end
