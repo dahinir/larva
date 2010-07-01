@@ -20,6 +20,7 @@
 	
 	/* real */
 	int sampleCount;
+	long millisecond;
 	
 	float xAcceleration, yAcceleration, zAcceleration;
 	float xTesla, yTesla, zTesla;
@@ -38,11 +39,14 @@
  
 /* real */
 @property int sampleCount;
+@property long millisecond;
 
 @property float xAcceleration, yAcceleration, zAcceleration;
 @property float xTesla, yTesla, zTesla;
 
 @property float xVelocity, yVelocity, zVelocity;
 @property float xDistance, yDistance, zDistance;
+
+@property(readonly) NSString *toXMLString;
 
 @end

@@ -15,7 +15,7 @@
 @synthesize title, artist, album, releaseDate, category;
 */
 
-@synthesize sampleCount;
+@synthesize sampleCount, millisecond;
 
 @synthesize xAcceleration, yAcceleration, zAcceleration;
 @synthesize xTesla, yTesla, zTesla;
@@ -33,6 +33,10 @@
     [category release];
 	 */
     [super dealloc];
+}
+
+- (NSString *)toXMLString {
+	return [NSString stringWithFormat:@"<accelerometer><x>%d</x><y>%d</y><z>%d</z></accelerometer>", xAcceleration, yAcceleration, zAcceleration ];
 }
 
 @end

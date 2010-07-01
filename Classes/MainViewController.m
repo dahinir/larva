@@ -40,6 +40,7 @@
 
 /* network log */
 @synthesize testLabel, testLabel2;
+#define kServerURL	@"http://dasolute.com:8080/example/documents/create.do"
 
 
 /*
@@ -139,10 +140,15 @@
 	
 	/* for network log */
 	sensorDatas[sampleCount01].sampleCount = sampleCount01;
+	sensorDatas[sampleCount01].millisecond = sampleTime + kAccelerometerFrequency;
 	
 	sensorDatas[sampleCount01].xAcceleration = xAcceleration;
 	sensorDatas[sampleCount01].yAcceleration = yAcceleration;
 	sensorDatas[sampleCount01].zAcceleration = zAcceleration;
+	
+	sensorDatas[sampleCount01].xTesla = xTesla;
+	sensorDatas[sampleCount01].yTesla = yTesla;
+	sensorDatas[sampleCount01].zTesla = zTesla;
 	
 	sensorDatas[sampleCount01].xVelocity = xVelocity;
 	sensorDatas[sampleCount01].yVelocity = yVelocity;
@@ -157,8 +163,18 @@
 	sampleCount01++;
 	if (sampleCount01 == kLogFrequency) {
 		sampleCount01 = 0;
+		// [client sendMessage:@"dummy" waitForReply:FALSE];
+		[client sendMessage:sensorDatas[0] waitForReply:FALSE];
+		
+		/* 다음 두줄 부터 시작!!!! */
+		// 센서데이터빈 toXMLString의 결과 같을 다음 줄(POST body)이랑 잘 붙여서 NSData로 변경한다음 HTTPClient에 넘기면 된다(sendPOSTWithData도 구현해야 겠지)
+		// @"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=fromIphone&content=gg&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent="
+
+		
+		/* 
 		UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"100!!" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
 		[myAlert show];
+		 */
 	}
 	//NSLog([NSString stringWithFormat:@"%.2f", temp]);
 }
@@ -182,10 +198,11 @@
 	// Update the graph with the new magnetic reading.
 	// [graphView updateHistoryWithX:heading.x y:heading.y z:heading.z];
 	
-	
 	/* for network log */
 	testLabel2.text = [[NSString alloc] initWithFormat:@"tesla called : %i", sampleCount02 ];
 	sampleCount02++;
+	if (sampleCount02 == kLogFrequency)
+		sampleCount02 = 0;
 }
 
 // This delegate method is invoked when the location managed encounters an error condition.
@@ -241,6 +258,7 @@
 // initialize variables
 - (IBAction) button01pressed:(id)sender {
 	NSLog(@"button 01 pressed!!");
+	temp = 0;
 	
 	/* accelerometer */
 	xAccelerationLabel.text= @"yeah!";
@@ -266,15 +284,15 @@
 	[locationManager startUpdatingLocation];
 
 	/* for data log */
-	// client = [[SOAPClient alloc] init];
-	temp = 0;
+	client = [[HTTPClient alloc] initWithServerURLString:kServerURL];
 	sampleCount01 = 0;
 	sampleCount02 = 0;
+	sampleTime = 0;
 	for (int i=0; i<kLogFrequency; i++) {
 		// sensorDatas[i] = [[[SensorData alloc] init] autorelease];
 		sensorDatas[i] = [[SensorData alloc] init];
 	}
-	testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %i", -22];
+	testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %d", -22];
 	sensorDatas[3].sampleCount = 78;
 }
 
@@ -310,6 +328,7 @@
 	[distanceTraveledLabel release];
 	
 	/* network log */
+	[client release];
 	for (int i=0; i<kLogFrequency; i++) {
 		[sensorDatas[i] release];
 	}

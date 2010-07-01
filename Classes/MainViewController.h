@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "SensorData.h"
-#import "SOAPClient.h"
+#import "HTTPClient.h"
 
 /* network log */
 #define kLogFrequency	100	// send log throgh network every 100 sample
@@ -50,7 +50,8 @@
 	
 	/* for data log */
 	int sampleCount01, sampleCount02, temp;
-	SOAPClient *client;
+	long sampleTime;
+	HTTPClient *client;
 	SensorData *sensorDatas[kLogFrequency];
 }
 

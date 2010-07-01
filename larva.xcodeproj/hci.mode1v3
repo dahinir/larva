@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>67F2017611DCC6BE0013FD9F</string>
+										<string>67F2021A11DD06A40013FD9F</string>
 										<key>history</key>
 										<array>
 											<string>67CBE7B4112BD0A700F7497F</string>
@@ -338,18 +338,18 @@
 											<string>67F2FFE211D3359E0013FD9F</string>
 											<string>67F2005F11DA10560013FD9F</string>
 											<string>67F2006211DA10560013FD9F</string>
-											<string>67F200FC11DC9EAB0013FD9F</string>
-											<string>67F200FD11DC9EAB0013FD9F</string>
-											<string>67F200FE11DC9EAB0013FD9F</string>
-											<string>67F200FF11DC9EAB0013FD9F</string>
 											<string>67F2010111DC9EAB0013FD9F</string>
 											<string>67F2015811DCC2AA0013FD9F</string>
 											<string>67F2015911DCC2AA0013FD9F</string>
 											<string>67F2015B11DCC2AA0013FD9F</string>
-											<string>67F2017211DCC6BE0013FD9F</string>
-											<string>67F2017311DCC6BE0013FD9F</string>
-											<string>67F2017411DCC6BE0013FD9F</string>
-											<string>67F2017511DCC6BE0013FD9F</string>
+											<string>67F201DD11DCE3B60013FD9F</string>
+											<string>67F201EF11DCEBF80013FD9F</string>
+											<string>67F201FB11DCF0F40013FD9F</string>
+											<string>67F201FD11DCF0F40013FD9F</string>
+											<string>67F2020E11DCF80C0013FD9F</string>
+											<string>67F2021711DD06A40013FD9F</string>
+											<string>67F2021811DD06A40013FD9F</string>
+											<string>67F2021911DD06A40013FD9F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -547,7 +547,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>67F2017711DCC6BE0013FD9F</string>
 		<string>67403CFD115B8FDE0042C6F9</string>
 		<string>67F2006A11DA10560013FD9F</string>
 		<string>67F2006B11DA10560013FD9F</string>
@@ -573,12 +572,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MainViewController.m</string>
+								<string>SensorData.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -595,8 +596,6 @@
 							<string>328pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
