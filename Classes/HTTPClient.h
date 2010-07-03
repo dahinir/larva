@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright © 2005 Apple Computer, Inc., All Rights Reserved
+ Copyright ï¿½ 2005 Apple Computer, Inc., All Rights Reserved
  */ 
 
 #import <Foundation/Foundation.h>
@@ -58,7 +58,8 @@
 // - (id)initWithServerName:(NSString *)name;
 - (id)initWithServerURLString:(NSString *)urlString;
 
-- (NSString *)sendMessage:(SensorData *)message waitForReply:(BOOL)b;
+//- (NSString *)sendMessage:(SensorData *)message waitForReply:(BOOL)b;
+- (NSString *)sendPOSTWithData:(NSData *)data waitForReply:(BOOL)b;
 
 @end
 

@@ -118,6 +118,26 @@
     [super dealloc];
 }
 
+- (NSString *)sendPOSTWithData:(NSData *)data waitForReply:(BOOL)b {
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0] autorelease];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [request setValue:[NSString stringWithFormat:@"%d", [data length]] forHTTPHeaderField:@"Content-Length"];
+    MyURLConnection *conn = [[[MyURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+	
+	NSLog(@"sended");
+	 
+	if (b) {/*
+		while (![conn isFinished]) {
+			[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+		}
+		NSError *error = nil;
+		message = [[[NSXMLDocument alloc] initWithData:[conn data] options:NSXMLNodeOptionsNone error:&error] autorelease];
+	*/}
+    return nil;
+}
+
+/*
 - (NSString *)sendMessage:(SensorData *)message waitForReply:(BOOL)b {
     //NSData *data = [xml XMLData];
 	message = @"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=fromIphone&content=gg&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent=";
@@ -133,8 +153,7 @@
     MyURLConnection *conn = [[[MyURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 
 	NSLog(@"sended");
-	
-	/*
+
     message = nil;
 	 
     if (b) {
@@ -144,9 +163,10 @@
         NSError *error = nil;
         message = [[[NSXMLDocument alloc] initWithData:[conn data] options:NSXMLNodeOptionsNone error:&error] autorelease];
     }
-	 */
+	 
     return message;
 }
+*/
 
 /* delegate */
 - (void)connection:(MyURLConnection *)urlconn didReceiveResponse:(NSURLResponse *)response {

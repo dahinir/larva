@@ -13,7 +13,7 @@
 #import "HTTPClient.h"
 
 /* network log */
-#define kLogFrequency	100	// send log throgh network every 100 sample
+#define kLogFrequency	5	// send log throgh network every 10 sample
 
 @interface MainViewController : UIViewController<UIAccelerometerDelegate, CLLocationManagerDelegate> 
 {
@@ -41,6 +41,9 @@
 	UILabel *zTeslaLabel;
 	
 	// GPS
+	double latitude, longitude, altitude;
+	double horizontalAccuracy, verticalAccuracy;
+	// double distanceTraveled;
 	UILabel *latitudeLabel;
 	UILabel *longitudeLabel;
 	UILabel *horizontalAccuracyLabel;
@@ -51,6 +54,7 @@
 	/* for data log */
 	int sampleCount01, sampleCount02, temp;
 	long sampleTime;
+	NSMutableString *logDataString;
 	HTTPClient *client;
 	SensorData *sensorDatas[kLogFrequency];
 }

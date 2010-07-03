@@ -139,8 +139,9 @@
 
 	
 	/* for network log */
+	sampleTime = sampleTime +1000/kAccelerometerFrequency;
 	sensorDatas[sampleCount01].sampleCount = sampleCount01;
-	sensorDatas[sampleCount01].millisecond = sampleTime + kAccelerometerFrequency;
+	sensorDatas[sampleCount01].millisecond = sampleTime;
 	
 	sensorDatas[sampleCount01].xAcceleration = xAcceleration;
 	sensorDatas[sampleCount01].yAcceleration = yAcceleration;
@@ -149,6 +150,12 @@
 	sensorDatas[sampleCount01].xTesla = xTesla;
 	sensorDatas[sampleCount01].yTesla = yTesla;
 	sensorDatas[sampleCount01].zTesla = zTesla;
+	
+	sensorDatas[sampleCount01].latitude = latitude;
+	sensorDatas[sampleCount01].longitude = longitude;
+	sensorDatas[sampleCount01].altitude = altitude;
+	sensorDatas[sampleCount01].horizontalAccuracy = horizontalAccuracy;
+	sensorDatas[sampleCount01].verticalAccuracy = verticalAccuracy;
 	
 	sensorDatas[sampleCount01].xVelocity = xVelocity;
 	sensorDatas[sampleCount01].yVelocity = yVelocity;
@@ -160,23 +167,27 @@
 	
 	testLabel.text = [[NSString alloc] initWithFormat:@"accel called : %i", sampleCount01 ];
 	
-	sampleCount01++;
-	if (sampleCount01 == kLogFrequency) {
-		sampleCount01 = 0;
-		// [client sendMessage:@"dummy" waitForReply:FALSE];
-		[client sendMessage:sensorDatas[0] waitForReply:FALSE];
-		
-		/* 다음 두줄 부터 시작!!!! */
-		// 센서데이터빈 toXMLString의 결과 같을 다음 줄(POST body)이랑 잘 붙여서 NSData로 변경한다음 HTTPClient에 넘기면 된다(sendPOSTWithData도 구현해야 겠지)
-		// @"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=fromIphone&content=gg&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent="
+	if (sampleCount01 == 0) {
+		[logDataString appendString:@"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=IphoneSensorData&content="];
+		[logDataString appendFormat:@"<updatedGMT>%@</updatedGMT>\n", [NSDate date] ];
+	}
+	[logDataString appendFormat:@"%@\n", sensorDatas[sampleCount01].toXMLString];
 
+	sampleCount01++;
+	if (sampleCount01 == kLogFrequency ) {
+		[logDataString appendString:@"\n\n"];
+		[logDataString appendString:@"&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent="];
 		
+		NSData *logData = [logDataString dataUsingEncoding:NSUTF8StringEncoding];
+		[client sendPOSTWithData:logData waitForReply:FALSE];
+		
+		[logDataString setString:@""];
+		sampleCount01 = 0;
 		/* 
 		UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"100!!" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
 		[myAlert show];
 		 */
 	}
-	//NSLog([NSString stringWithFormat:@"%.2f", temp]);
 }
 
 /* teslameter */
@@ -221,24 +232,29 @@
 		fromLocation:(CLLocation *)oldLocation {
 	if (startingPoint == nil)
 		self.startingPoint = newLocation;
+	latitude = newLocation.coordinate.latitude;
+	longitude = newLocation.coordinate.longitude;
+	altitude = newLocation.altitude;
+	horizontalAccuracy = newLocation.horizontalAccuracy;
+	verticalAccuracy = newLocation.verticalAccuracy;
 	
-	NSString *latitudeString = [[NSString alloc] initWithFormat:@"%g°", newLocation.coordinate.latitude];
+	NSString *latitudeString = [[NSString alloc] initWithFormat:@"%g°", latitude];
 	latitudeLabel.text = latitudeString;
 	[latitudeString release];
 	
-	NSString *longitudeString = [[NSString alloc] initWithFormat:@"%g°", newLocation.coordinate.longitude];
+	NSString *longitudeString = [[NSString alloc] initWithFormat:@"%g°", longitude];
 	longitudeLabel.text = longitudeString;
 	[longitudeString release];
 	
-	NSString *horizontalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", newLocation.horizontalAccuracy];
-	horizontalAccuracyLabel.text = horizontalAccuracyString;
-	[horizontalAccuracyString release];
-	
-	NSString *altitudeString = [[NSString alloc] initWithFormat:@"%gm", newLocation.altitude];
+	NSString *altitudeString = [[NSString alloc] initWithFormat:@"%gm", altitude];
 	altitudeLabel.text = altitudeString;
 	[altitudeString release];
 	
-	NSString *verticalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", newLocation.verticalAccuracy];
+	NSString *horizontalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", horizontalAccuracy];
+	horizontalAccuracyLabel.text = horizontalAccuracyString;
+	[horizontalAccuracyString release];
+
+	NSString *verticalAccuracyString = [[NSString alloc] initWithFormat:@"%gm", verticalAccuracy];
 	verticalAccuracyLabel.text = verticalAccuracyString;
 	[verticalAccuracyString release];
 	
@@ -284,6 +300,7 @@
 	[locationManager startUpdatingLocation];
 
 	/* for data log */
+	logDataString = [[NSMutableString alloc] initWithCapacity:1024 ];
 	client = [[HTTPClient alloc] initWithServerURLString:kServerURL];
 	sampleCount01 = 0;
 	sampleCount02 = 0;
@@ -329,6 +346,7 @@
 	
 	/* network log */
 	[client release];
+	[logDataString release];
 	for (int i=0; i<kLogFrequency; i++) {
 		[sensorDatas[i] release];
 	}

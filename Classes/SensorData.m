@@ -19,6 +19,7 @@
 
 @synthesize xAcceleration, yAcceleration, zAcceleration;
 @synthesize xTesla, yTesla, zTesla;
+@synthesize latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
 @synthesize xVelocity, yVelocity, zVelocity;
 @synthesize xDistance, yDistance, zDistance;
@@ -36,7 +37,49 @@
 }
 
 - (NSString *)toXMLString {
-	return [NSString stringWithFormat:@"<accelerometer><x>%d</x><y>%d</y><z>%d</z></accelerometer>", xAcceleration, yAcceleration, zAcceleration ];
+/*	return [NSString stringWithFormat:
+			@"<sensorData>\
+			<accelerometer>\
+			<x>%.4f", xAcceleration];
+*/
+	return [NSString stringWithFormat:
+		@"<sample time=%ldms>\n\
+	<accelerometer>\n\
+		<x>%.4f</x>\n\
+		<y>%.4f</y>\n\
+		<z>%.4f</z>\n\
+	</accelerometer>\n\
+	<tesla>\n\
+		<x>%.4f</x>\n\
+		<y>%.4f</y>\n\
+		<z>%.4f</z>\n\
+	</tesla>\n\
+	<GPS>\n\
+		<latitude>%g°</latitude>\n\
+		<longitude>%g°</longitude>\n\
+		<altitude>%gm</altitude>\n\
+		<horizontalAccuracy>%gm</horizontalAccuracy>\n\
+		<verticalAccuracy>%gm</verticalAccuracy>\n\
+	</GPS>\n\
+	<estimated>\n\
+			<velocity>\n\
+				<x>%.4f</x>\n\
+				<y>%.4f</y>\n\
+				<z>%.4f</z>\n\
+			</velocity>\n\
+			<distance>\n\
+				<x>%.4f</x>\n\
+				<y>%.4f</y>\n\
+				<z>%.4f</z>\n\
+			</distance>\n\
+	</estimated>\n\
+</sample>\n", millisecond, 
+			xAcceleration, yAcceleration, zAcceleration, 
+			xTesla, yTesla, zTesla , 
+			latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy,
+			xVelocity, yVelocity, zVelocity,
+			xDistance, yDistance, zDistance];
+ 
 }
 
 @end
