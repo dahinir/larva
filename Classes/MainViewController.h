@@ -15,6 +15,8 @@
 /* network log */
 #define kLogFrequency	5	// send log throgh network every 10 sample
 
+@class AccelerometerFilter;
+
 @interface MainViewController : UIViewController<UIAccelerometerDelegate, CLLocationManagerDelegate> 
 {
     UIWindow *window;
@@ -30,6 +32,7 @@
 	UILabel *xVelocityLabel, *yVelocityLabel, *zVelocityLabel;
 	UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 	
+	AccelerometerFilter *filter;
 	CLLocationManager *locationManager;	
 	CLLocation *startingPoint;
 	

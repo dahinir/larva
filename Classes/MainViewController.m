@@ -7,18 +7,19 @@
 //
 
 #import "MainViewController.h"
-
+#import "AccelerometerFilter.h"
 
 @implementation MainViewController
 
 @synthesize window;
 
 /* accelerometer */
+
 @synthesize xDistanceLabel, yDistanceLabel, zDistanceLabel;
 @synthesize xVelocityLabel, yVelocityLabel, zVelocityLabel;
 @synthesize xAccelerationLabel, yAccelerationLabel, zAccelerationLabel;
 #define kFilteringFactor	0.1		// filtering factor to generate a value that uses 10 percent of the unfiltered acceleration data and 90 percent of the previously filtered value.
-#define kAccelerometerFrequency	50.0	// (50Hz) 100 is max (10 milliseconds)
+#define kAccelerometerFrequency	60.0	// (60Hz) 100 is max
 
 /* CLLocationManager */
 @synthesize locationManager;
@@ -95,6 +96,13 @@
     UIAccelerometer*  theAccelerometer = [UIAccelerometer sharedAccelerometer];
 	theAccelerometer.updateInterval = 1 / kAccelerometerFrequency;
     theAccelerometer.delegate = self;
+	
+	// setting high pass filter
+	filter =[ [[HighpassFilter class] alloc] initWithSampleRate:kAccelerometerFrequency cutoffFrequency:5.0];
+	// setting low pass filter
+	// filter =[ [[LowpassFilter class] alloc] initWithSampleRate:kAccelerometerFrequency cutoffFrequency:5.0];
+	filter.adaptive = NO;
+	
     // Delegate events begin immediately.
 }
 
@@ -105,34 +113,40 @@
 	 accelY = acceleration.y;
 	 accelZ = acceleration.z;
 	 */
-	/* Use a basic low-pass filter to keep only the gravity component of each axis.
-	 accelX = (acceleration.x * kFilteringFactor) + (accelX * (1.0 - kFilteringFactor));
-	 // temp = accelX*100;
-	 // accelX = temp/100;
-	 accelY = (acceleration.y * kFilteringFactor) + (accelY * (1.0 - kFilteringFactor));
-	 accelZ = (acceleration.z * kFilteringFactor) + (accelZ * (1.0 - kFilteringFactor));
+	// Use a basic low-pass filter to keep only the gravity component of each axis.
+	/*
+	 xAcceleration = (acceleration.x * kFilteringFactor) + (xAcceleration * (1.0 - kFilteringFactor));
+	 yAcceleration = (acceleration.y * kFilteringFactor) + (yAcceleration * (1.0 - kFilteringFactor));
+	 zAcceleration = (acceleration.z * kFilteringFactor) + (zAcceleration * (1.0 - kFilteringFactor));
 	 */
+	 
 	// 이전값과 차이값을 일정이상만(쓰레솔더)
 	// 하이패스 필터와 중력 필터는 다르다.
 	// low pass filter isolate the effects of gravity
-	// high pass fileter that u can use to remove the effects of gravity
+	/* high pass fileter that u can use to remove the effects of gravity
 	xAcceleration = acceleration.x - ( (acceleration.x * kFilteringFactor) + (xAcceleration * (1.0 - kFilteringFactor)) );
     yAcceleration = acceleration.y - ( (acceleration.y * kFilteringFactor) + (yAcceleration * (1.0 - kFilteringFactor)) );
     zAcceleration = acceleration.z - ( (acceleration.z * kFilteringFactor) + (zAcceleration * (1.0 - kFilteringFactor)) );
+	 */
+	[filter addAcceleration:acceleration];
+	xAcceleration = filter.x;
+	yAcceleration = filter.y;
+	zAcceleration = filter.z;
+	
 	[xAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", xAcceleration ]];
 	[yAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", yAcceleration ]];
 	[zAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", zAcceleration ]];
 	
-	xVelocity = xVelocity + xAcceleration*kFilteringFactor;
-	yVelocity = yVelocity + yAcceleration*kFilteringFactor;
-	zVelocity = zVelocity + zAcceleration*kFilteringFactor;
+	xVelocity = xVelocity + xAcceleration*1/kAccelerometerFrequency;
+	yVelocity = yVelocity + yAcceleration*1/kAccelerometerFrequency;
+	zVelocity = zVelocity + zAcceleration*1/kAccelerometerFrequency;
 	[xVelocityLabel setText:[NSString stringWithFormat:@"%.4f", xVelocity ]];
 	[yVelocityLabel setText:[NSString stringWithFormat:@"%.4f", yVelocity ]];
 	[zVelocityLabel setText:[NSString stringWithFormat:@"%.4f", zVelocity ]];
 	
-	xDistance = xDistance + xVelocity*kFilteringFactor;
-	yDistance = yDistance + yVelocity*kFilteringFactor;
-	zDistance = zDistance + zVelocity*kFilteringFactor;
+	xDistance = xDistance + xVelocity*1/kAccelerometerFrequency;
+	yDistance = yDistance + yVelocity*1/kAccelerometerFrequency;
+	zDistance = zDistance + zVelocity*1/kAccelerometerFrequency;
 	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", xDistance ]];
 	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
 	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
@@ -179,7 +193,8 @@
 		[logDataString appendString:@"&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent="];
 		
 		NSData *logData = [logDataString dataUsingEncoding:NSUTF8StringEncoding];
-		[client sendPOSTWithData:logData waitForReply:FALSE];
+		if (client != nil )
+			[client sendPOSTWithData:logData waitForReply:FALSE];
 		
 		[logDataString setString:@""];
 		sampleCount01 = 0;
