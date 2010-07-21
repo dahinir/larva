@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>67AA9E5D11F7518E00BE21F4</string>
+						<string>67AA9EDF11F7651900BE21F4</string>
 						<key>history</key>
 						<array>
 							<string>67AA9E3711F747BE00BE21F4</string>
@@ -270,8 +270,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -311,6 +309,10 @@
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>1DF5F4DF0D08C38300B7A737</string>
+								<string>1D30AB110D05D00D00671497</string>
+								<string>67F206D5117CCCE80031850B</string>
+								<string>67AA9EAC11F75E6A00BE21F4</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -318,7 +320,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>9</integer>
+									<integer>4</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -354,12 +356,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SensorData.m</string>
+								<string>MainViewController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -367,11 +371,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SensorData.m</string>
+										<string>MainViewController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>67AA9E5C11F7518E00BE21F4</string>
+										<string>67AA9EDE11F7651900BE21F4</string>
 										<key>history</key>
 										<array>
 											<string>67CBE7B4112BD0A700F7497F</string>
@@ -386,11 +390,11 @@
 											<string>67ED532411F6B9A700CE674F</string>
 											<string>67AA9D7F11F719E200BE21F4</string>
 											<string>67AA9DA511F7267800BE21F4</string>
-											<string>67AA9DB611F7278D00BE21F4</string>
-											<string>67AA9E5811F7518E00BE21F4</string>
-											<string>67AA9E5911F7518E00BE21F4</string>
 											<string>67AA9E5A11F7518E00BE21F4</string>
-											<string>67AA9E5B11F7518E00BE21F4</string>
+											<string>67AA9E6111F75CAF00BE21F4</string>
+											<string>67AA9EC411F7602100BE21F4</string>
+											<string>67AA9ECB11F7630700BE21F4</string>
+											<string>67AA9ECC11F7630700BE21F4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -588,14 +592,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>67AA9EE011F7651900BE21F4</string>
 		<string>67403CFD115B8FDE0042C6F9</string>
 		<string>67AA9D9211F719E200BE21F4</string>
 		<string>67AA9D9311F719E200BE21F4</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6752F1301122BD3800B6785A</string>
-		<string>/Users/hci/Documents/workspace/larva/larva.xcodeproj</string>
 		<string>67AA9E3C11F747C800BE21F4</string>
+		<string>/Users/hci/Documents/workspace/larva/larva.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>-256 1022 1003 931 -259 900 1920 1080 </string>

@@ -496,6 +496,35 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
+					<object class="IBUILabel" id="747995055">
+						<reference key="NSNextResponder" ref="358867937"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{183, 300}, {61, 21}}</string>
+						<reference key="NSSuperview" ref="358867937"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">0.0</string>
+						<reference key="IBUITextColor" ref="431213422"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">2</int>
+					</object>
+					<object class="IBUILabel" id="522710405">
+						<reference key="NSNextResponder" ref="358867937"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 300}, {93, 21}}</string>
+						<reference key="NSSuperview" ref="358867937"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">trueHeading</string>
+						<reference key="IBUITextColor" ref="431213422"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+					</object>
 					<object class="IBUILabel" id="92834209">
 						<reference key="NSNextResponder" ref="358867937"/>
 						<int key="NSvFlags">292</int>
@@ -761,6 +790,14 @@
 					</object>
 					<int key="connectionID">64</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">trueHeadingLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="747995055"/>
+					</object>
+					<int key="connectionID">67</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -821,6 +858,8 @@
 							<reference ref="1038867470"/>
 							<reference ref="895215679"/>
 							<reference ref="79887085"/>
+							<reference ref="747995055"/>
+							<reference ref="522710405"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -994,6 +1033,16 @@
 						<reference key="object" ref="79887085"/>
 						<reference key="parent" ref="358867937"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">65</int>
+						<reference key="object" ref="747995055"/>
+						<reference key="parent" ref="358867937"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">66</int>
+						<reference key="object" ref="522710405"/>
+						<reference key="parent" ref="358867937"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1035,6 +1084,8 @@
 					<string>6.IBPluginDependency</string>
 					<string>61.IBPluginDependency</string>
 					<string>63.IBPluginDependency</string>
+					<string>65.IBPluginDependency</string>
+					<string>66.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -1079,6 +1130,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1097,7 +1150,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">64</int>
+			<int key="maxID">67</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1127,9 +1180,9 @@
 							<string>horizontalAccuracyLabel</string>
 							<string>latitudeLabel</string>
 							<string>longitudeLabel</string>
-							<string>magnitudeLabel</string>
 							<string>testLabel</string>
 							<string>testLabel2</string>
+							<string>trueHeadingLabel</string>
 							<string>verticalAccuracyLabel</string>
 							<string>window</string>
 							<string>xAccelerationLabel</string>

@@ -25,7 +25,7 @@
 @synthesize locationManager;
 
 /* teslameter */
-@synthesize magnitudeLabel;
+@synthesize trueHeadingLabel;
 @synthesize xTeslaLabel;
 @synthesize yTeslaLabel;
 @synthesize zTeslaLabel;
@@ -151,9 +151,11 @@
 	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
 	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
 	
+	
 	/* 
 	 * for walking estimation
 	 */
+	sampleTime = sampleTime + 1000/kAccelerometerFrequency;
 	waveIntegral = waveIntegral + zAcceleration;
 	
 	/*
@@ -188,7 +190,7 @@
 		waveIntegral = 0.0;
 	}
 	
-	sampleTime = sampleTime + 1000/kAccelerometerFrequency;
+	
 
 
 	// 정지상태 감지
@@ -260,17 +262,18 @@
 // This delegate method is invoked when the location manager has heading data.
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
     // Update the labels with the raw x, y, and z values.
+	trueHeading  = heading.trueHeading;
 	xTesla = heading.x;
 	yTesla = heading.y;
 	zTesla = heading.z;
+	[trueHeadingLabel setText:[NSString stringWithFormat:@"%.0f°", trueHeading]];
 	[xTeslaLabel setText:[NSString stringWithFormat:@"%.2f", xTesla]];
 	[yTeslaLabel setText:[NSString stringWithFormat:@"%.2f", yTesla]];
 	[zTeslaLabel setText:[NSString stringWithFormat:@"%.2f", zTesla]];
 	
     // Compute and display the magnitude (size or strength) of the vector.
 	//      magnitude = sqrt(x^2 + y^2 + z^2)
-	CGFloat magnitude = sqrt(heading.x*heading.x + heading.y*heading.y + heading.z*heading.z);
-    [magnitudeLabel setText:[NSString stringWithFormat:@"%.1f", magnitude]];
+	// CGFloat magnitude = sqrt(heading.x*heading.x + heading.y*heading.y + heading.z*heading.z);
 	
 	// Update the graph with the new magnetic reading.
 	// [graphView updateHistoryWithX:heading.x y:heading.y z:heading.z];
@@ -402,7 +405,7 @@
 
 - (void)dealloc {	
 	/* teslameter */
-	[magnitudeLabel release];
+	[trueHeadingLabel release];
 	[xTeslaLabel release];
 	[yTeslaLabel release];
 	[zTeslaLabel release];

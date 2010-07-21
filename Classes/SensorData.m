@@ -19,6 +19,7 @@
 
 @synthesize xAcceleration, yAcceleration, zAcceleration;
 @synthesize xTesla, yTesla, zTesla;
+@synthesize trueHeading;
 @synthesize latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
 @synthesize isWalking;
@@ -68,6 +69,7 @@
 	</tesla>\n\
 	<estimated>\n\
 			<walking>%@</walking>\n\
+			<head>%.0f°</head>\n\
 			<velocity>\n\
 				<x>%.4f</x>\n\
 				<y>%.4f</y>\n\
@@ -83,6 +85,7 @@
 			xAcceleration, yAcceleration, zAcceleration, 
 			xTesla, yTesla, zTesla ,
 			isWalking?@"YES": @"NO" ,
+			trueHeading,
 			xVelocity, yVelocity, zVelocity,
 			xDistance, yDistance, zDistance];
  

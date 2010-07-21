@@ -24,6 +24,7 @@
 	
 	float xAcceleration, yAcceleration, zAcceleration;
 	float xTesla, yTesla, zTesla;
+	float trueHeading;
 	double latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 	
 	BOOL isWalking;
@@ -46,6 +47,7 @@
 
 @property float xAcceleration, yAcceleration, zAcceleration;
 @property float xTesla, yTesla, zTesla;
+@property float trueHeading;
 @property double latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
 @property BOOL isWalking;

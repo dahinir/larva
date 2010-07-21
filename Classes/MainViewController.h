@@ -13,7 +13,7 @@
 #import "HTTPClient.h"
 
 /* network log */
-#define kLogFrequency	4	// send log throgh network every # sample
+#define kLogFrequency	5	// send log throgh network every # sample
 
 @class AccelerometerFilter;
 
@@ -38,7 +38,8 @@
 	
 	// teslameter
 	float xTesla, yTesla, zTesla;
-	UILabel *magnitudeLabel;
+	float trueHeading;
+	UILabel *trueHeadingLabel;
 	UILabel *xTeslaLabel;
 	UILabel *yTeslaLabel;
 	UILabel *zTeslaLabel;
@@ -82,7 +83,7 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
 // teslameter
-@property (nonatomic, retain) IBOutlet UILabel *magnitudeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *trueHeadingLabel;
 @property (nonatomic, retain) IBOutlet UILabel *xTeslaLabel;
 @property (nonatomic, retain) IBOutlet UILabel *yTeslaLabel;
 @property (nonatomic, retain) IBOutlet UILabel *zTeslaLabel;
