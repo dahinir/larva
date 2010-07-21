@@ -13,7 +13,7 @@
 #import "HTTPClient.h"
 
 /* network log */
-#define kLogFrequency	5	// send log throgh network every 10 sample
+#define kLogFrequency	4	// send log throgh network every # sample
 
 @class AccelerometerFilter;
 
@@ -53,6 +53,13 @@
 	UILabel *altitudeLabel;
 	UILabel *verticalAccuracyLabel;
 	UILabel *distanceTraveledLabel;
+	
+	/* for walking estimation */
+	float zAccelerationPrev;
+	BOOL isWalking;
+	long wavePositiveTime, waveNegativeTime, lastStepTime;
+	BOOL wavePositiveFlag, waveNegativeFlag;
+	float waveIntegral;
 	
 	/* for data log */
 	int sampleCount01, sampleCount02, temp;

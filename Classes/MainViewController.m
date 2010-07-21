@@ -137,23 +137,74 @@
 	[yAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", yAcceleration ]];
 	[zAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", zAcceleration ]];
 	
-	xVelocity = xVelocity + xAcceleration*1/kAccelerometerFrequency;
-	yVelocity = yVelocity + yAcceleration*1/kAccelerometerFrequency;
-	zVelocity = zVelocity + zAcceleration*1/kAccelerometerFrequency;
+	xVelocity = xVelocity + xAcceleration * 1/kAccelerometerFrequency;
+	yVelocity = yVelocity + yAcceleration * 1/kAccelerometerFrequency;
+	zVelocity = zVelocity + zAcceleration * 1/kAccelerometerFrequency;
 	[xVelocityLabel setText:[NSString stringWithFormat:@"%.4f", xVelocity ]];
 	[yVelocityLabel setText:[NSString stringWithFormat:@"%.4f", yVelocity ]];
 	[zVelocityLabel setText:[NSString stringWithFormat:@"%.4f", zVelocity ]];
 	
-	xDistance = xDistance + xVelocity*1/kAccelerometerFrequency;
-	yDistance = yDistance + yVelocity*1/kAccelerometerFrequency;
-	zDistance = zDistance + zVelocity*1/kAccelerometerFrequency;
+	xDistance = xDistance + xVelocity * 1/kAccelerometerFrequency;
+	yDistance = yDistance + yVelocity * 1/kAccelerometerFrequency;
+	zDistance = zDistance + zVelocity * 1/kAccelerometerFrequency;
 	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", xDistance ]];
 	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", yDistance ]];
 	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", zDistance ]];
+	
+	/* 
+	 * for walking estimation
+	 */
+	waveIntegral = waveIntegral + zAcceleration;
+	
+	/*
+	if (zAcceleration > 0 ) {
+		wavePositiveIntegralPeak = wavePositiveIntegralPeak + zAcceleration;
+	}else {
+		waveNegativeIntegralPeak = waveNegativeIntegralPeak + zAcceleration;
+	}*/
+	if (zAcceleration*zAccelerationPrev < 0) {
+		// positive
+		if (waveIntegral > 0.08) {
+			if ( !waveNegativeFlag) {
+				wavePositiveFlag = YES;
+				wavePositiveTime = sampleTime;
+			}
+		// negative
+		}else if (waveIntegral < -1.0){
+			if ( wavePositiveFlag ){
+				waveNegativeFlag = YES;
+				waveNegativeTime = sampleTime;
+			}
+		}
+		if (wavePositiveFlag && waveNegativeFlag) {
+			if ( (waveNegativeTime - wavePositiveTime) < 495 && waveIntegral < 7.0 ){
+				isWalking = YES;
+				lastStepTime = sampleTime;
+				testLabel.text = [[NSString alloc] initWithFormat:@"STEPED at %ims", sampleTime ];
+			}
+			wavePositiveFlag = NO;
+			waveNegativeFlag = NO;
+		}
+		waveIntegral = 0.0;
+	}
+	
+	sampleTime = sampleTime + 1000/kAccelerometerFrequency;
+
+
+	// 정지상태 감지
+	if ( (sampleTime-lastStepTime) > 850) {
+		testLabel2.text = [[NSString alloc] initWithFormat:@"STOP now %ims", sampleTime ];
+		isWalking = NO;
+	}
+	zAccelerationPrev = zAcceleration;
+	sensorDatas[sampleCount01].isWalking = isWalking;
+	testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", isWalking?@"YES":@"NO" ];
 
 	
-	/* for network log */
-	sampleTime = sampleTime +1000/kAccelerometerFrequency;
+
+	/* 
+	 *for network log
+	 */
 	sensorDatas[sampleCount01].sampleCount = sampleCount01;
 	sensorDatas[sampleCount01].millisecond = sampleTime;
 	
@@ -179,7 +230,7 @@
 	sensorDatas[sampleCount01].yDistance = yDistance;
 	sensorDatas[sampleCount01].zDistance = zDistance;
 	
-	testLabel.text = [[NSString alloc] initWithFormat:@"accel called : %i", sampleCount01 ];
+	// testLabel.text = [[NSString alloc] initWithFormat:@"accel called : %i", sampleCount01 ];
 	
 	if (sampleCount01 == 0) {
 		[logDataString appendString:@"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=IphoneSensorData&content="];
@@ -225,7 +276,7 @@
 	// [graphView updateHistoryWithX:heading.x y:heading.y z:heading.z];
 	
 	/* for network log */
-	testLabel2.text = [[NSString alloc] initWithFormat:@"tesla called : %i", sampleCount02 ];
+	// testLabel2.text = [[NSString alloc] initWithFormat:@"tesla called : %i", sampleCount02 ];
 	sampleCount02++;
 	if (sampleCount02 == kLogFrequency)
 		sampleCount02 = 0;
@@ -313,6 +364,14 @@
 	/* GPS */
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	[locationManager startUpdatingLocation];
+	
+	/* for walking estimation */
+	isWalking = NO;
+	lastStepTime = 0;
+	wavePositiveFlag = NO;
+	waveNegativeFlag = NO;
+	zAccelerationPrev = 0.0;
+	waveIntegral = 0.0;
 
 	/* for data log */
 	logDataString = [[NSMutableString alloc] initWithCapacity:1024 ];
@@ -324,7 +383,8 @@
 		// sensorDatas[i] = [[[SensorData alloc] init] autorelease];
 		sensorDatas[i] = [[SensorData alloc] init];
 	}
-	testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %d", -22];
+	// testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %d", -22];
+	testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", isWalking?@"YES":@"NO" ];
 	sensorDatas[3].sampleCount = 78;
 }
 
