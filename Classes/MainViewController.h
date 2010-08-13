@@ -12,16 +12,22 @@
 #import "SensorData.h"
 #import "HTTPClient.h"
 
-/* network log */
-#define kLogFrequency	5	// send log throgh network every # sample
+#import "MotionEstimator.h"
 
 @class AccelerometerFilter;
 
-@interface MainViewController : UIViewController<UIAccelerometerDelegate, CLLocationManagerDelegate> 
+/* network log */
+#define kLogFrequency	5	// send log throgh network every # sample
+
+
+@interface MainViewController : UIViewController<MotionEstimatorDelegate, CLLocationManagerDelegate> 
 {
     UIWindow *window;
 	
 	UILabel *testLabel, *testLabel2;
+	
+	/* MotionEstimator */
+	MotionEstimator *motionEstimator;
 	
 	/* at refactoring	 xAccel,yAccel, zTesla ... */
 	// accelerometer
@@ -33,6 +39,8 @@
 	UILabel *xAccelerationLabel, *yAccelerationLabel, *zAccelerationLabel;
 	
 	AccelerometerFilter *filter;
+	
+	
 	CLLocationManager *locationManager;	
 	CLLocation *startingPoint;
 	

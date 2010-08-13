@@ -22,7 +22,7 @@
 @synthesize trueHeading;
 @synthesize latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
-@synthesize isWalking;
+@synthesize isStep, isWalking;
 
 @synthesize xVelocity, yVelocity, zVelocity;
 @synthesize xDistance, yDistance, zDistance;

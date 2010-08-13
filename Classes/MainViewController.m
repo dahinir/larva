@@ -106,33 +106,13 @@
     // Delegate events begin immediately.
 }
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-	/*
-	 UIAccelerationValue accelX, accelY, accelZ;
-	 accelX = acceleration.x;
-	 accelY = acceleration.y;
-	 accelZ = acceleration.z;
-	 */
-	// Use a basic low-pass filter to keep only the gravity component of each axis.
-	/*
-	 xAcceleration = (acceleration.x * kFilteringFactor) + (xAcceleration * (1.0 - kFilteringFactor));
-	 yAcceleration = (acceleration.y * kFilteringFactor) + (yAcceleration * (1.0 - kFilteringFactor));
-	 zAcceleration = (acceleration.z * kFilteringFactor) + (zAcceleration * (1.0 - kFilteringFactor));
-	 */
-	 
-	// 이전값과 차이값을 일정이상만(쓰레솔더)
-	// 하이패스 필터와 중력 필터는 다르다.
-	// low pass filter isolate the effects of gravity
-	/* high pass fileter that u can use to remove the effects of gravity
-	xAcceleration = acceleration.x - ( (acceleration.x * kFilteringFactor) + (xAcceleration * (1.0 - kFilteringFactor)) );
-    yAcceleration = acceleration.y - ( (acceleration.y * kFilteringFactor) + (yAcceleration * (1.0 - kFilteringFactor)) );
-    zAcceleration = acceleration.z - ( (acceleration.z * kFilteringFactor) + (zAcceleration * (1.0 - kFilteringFactor)) );
-	 */
+- (void)accelerometerTemp:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+
+	
 	[filter addAcceleration:acceleration];
 	xAcceleration = filter.x;
 	yAcceleration = filter.y;
 	zAcceleration = filter.z;
-	
 	[xAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", xAcceleration ]];
 	[yAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", yAcceleration ]];
 	[zAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", zAcceleration ]];
@@ -158,12 +138,6 @@
 	sampleTime = sampleTime + 1000/kAccelerometerFrequency;
 	waveIntegral = waveIntegral + zAcceleration;
 	
-	/*
-	if (zAcceleration > 0 ) {
-		wavePositiveIntegralPeak = wavePositiveIntegralPeak + zAcceleration;
-	}else {
-		waveNegativeIntegralPeak = waveNegativeIntegralPeak + zAcceleration;
-	}*/
 	if (zAcceleration*zAccelerationPrev < 0) {
 		// positive
 		if (waveIntegral > 0.08) {
@@ -258,7 +232,7 @@
 	}
 }
 
-/* teslameter */
+/* teslameter 
 // This delegate method is invoked when the location manager has heading data.
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
     // Update the labels with the raw x, y, and z values.
@@ -278,12 +252,13 @@
 	// Update the graph with the new magnetic reading.
 	// [graphView updateHistoryWithX:heading.x y:heading.y z:heading.z];
 	
-	/* for network log */
+	// for network log 
 	// testLabel2.text = [[NSString alloc] initWithFormat:@"tesla called : %i", sampleCount02 ];
 	sampleCount02++;
 	if (sampleCount02 == kLogFrequency)
 		sampleCount02 = 0;
 }
+ 
 
 // This delegate method is invoked when the location managed encounters an error condition.
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -294,8 +269,9 @@
         // This error indicates that the heading could not be determined, most likely because of strong magnetic interference.
     }
 }
+*/
 
-/* GPS */
+/* GPS 
 - (void)locationManager:(CLLocationManager *)manager
 		didUpdateToLocation:(CLLocation *)newLocation
 		fromLocation:(CLLocation *)oldLocation {
@@ -331,11 +307,53 @@
 	NSString *distanceString = [[NSString alloc] initWithFormat:@"%gm", distance];
 	distanceTraveledLabel.text = distanceString;
 	[distanceString release];
-	
-	/* for network log */
-
 }
+ */
 
+// This is delegate method 
+- (void)sensorDataChanged:(SensorData *)sensorData {
+	// acceleration view
+	[xAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.xAcceleration ]];
+	[yAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.yAcceleration ]];
+	[zAccelerationLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.zAcceleration ]];
+	
+	// tesla view
+	[trueHeadingLabel setText:[NSString stringWithFormat:@"%.0f°", sensorData.trueHeading]];
+	[xTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.xTesla]];
+	[yTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.yTesla]];
+	[zTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.zTesla]];
+	
+	// velocity view
+	[xVelocityLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.xVelocity ]];
+	[yVelocityLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.yVelocity ]];
+	[zVelocityLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.zVelocity ]];
+	
+	// distance view
+	[xDistanceLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.xDistance ]];
+	[yDistanceLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.yDistance ]];
+	[zDistanceLabel setText:[NSString stringWithFormat:@"%.4f", sensorData.zDistance ]];
+	
+	// isStep, isWalking view
+	if (sensorData.isStep) {
+		testLabel.text = [[NSString alloc] initWithFormat:@"STEPED at %ims", sensorData.millisecond ];
+	}
+	testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", sensorData.isWalking?@"YES":@"NO" ];
+	
+	// tesla view
+	[trueHeadingLabel setText:[NSString stringWithFormat:@"%.0f°", sensorData.trueHeading]];
+	[xTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.xTesla]];
+	[yTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.yTesla]];
+	[zTeslaLabel setText:[NSString stringWithFormat:@"%.2f", sensorData.zTesla]];
+	
+	// location(maybe GPS) view
+	[latitudeLabel setText:[NSString stringWithFormat:@"%g°", sensorData.latitude]];
+	[longitudeLabel setText:[NSString stringWithFormat:@"%g°", sensorData.longitude]];
+	[altitudeLabel setText:[NSString stringWithFormat:@"%gm", sensorData.altitude]];
+	[horizontalAccuracyLabel setText:[NSString stringWithFormat:@"%gm", sensorData.horizontalAccuracy]];
+	[verticalAccuracyLabel setText:[NSString stringWithFormat:@"%gm", sensorData.verticalAccuracy]];
+	//CLLocationDistance distance = [newLocation getDistanceFrom:startingPoint];
+	//[distanceTraveledLabel setText:[NSString stringWithFormat:@"%gm", distance];
+}
 
 
 /* buttons */
@@ -345,36 +363,46 @@
 	NSLog(@"button 01 pressed!!");
 	temp = 0;
 	
-	/* accelerometer */
-	xAccelerationLabel.text= @"yeah!";
+	/* set MotionEstimator */
+	motionEstimator = [[MotionEstimator alloc] init];
+	motionEstimator.delegate = self;
+	[motionEstimator start];
+	
+	/* accelerometer 
+	//xAccelerationLabel.text= @"yeah!";
 	xAcceleration = 0; yAcceleration = 0; zAcceleration = 0;
 	xVelocity = 0; yVelocity = 0; zVelocity = 0;
 	xDistance = 0; yDistance = 0; zDistance = 0;
 	[self configureAccelerometer];
-	
-	/* CLLocation */
+	*/
+	 
+	/* CLLocation 
 	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
 	// setup delegate callbacks
 	locationManager.delegate = self;
+	 */
 	
-	/* teslameter */
+	/* teslameter 
 	xTesla = 0; yTesla = 0; zTesla = 0;
 	// heading service configuration
 	locationManager.headingFilter = kCLHeadingFilterNone;
 	// start the compass
 	[locationManager startUpdatingHeading];
+	 */
 	
-	/* GPS */
+	/* GPS 
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	[locationManager startUpdatingLocation];
+	 */
 	
-	/* for walking estimation */
+	/* for walking estimation 
 	isWalking = NO;
 	lastStepTime = 0;
 	wavePositiveFlag = NO;
 	waveNegativeFlag = NO;
 	zAccelerationPrev = 0.0;
 	waveIntegral = 0.0;
+	 */
 
 	/* for data log */
 	logDataString = [[NSMutableString alloc] initWithCapacity:1024 ];
@@ -388,7 +416,7 @@
 	}
 	// testLabel.text = [[NSString alloc] initWithFormat:@"01 pushed : %d", -22];
 	testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", isWalking?@"YES":@"NO" ];
-	sensorDatas[3].sampleCount = 78;
+	// sensorDatas[3].sampleCount = 78;
 }
 
 - (IBAction) button02pressed:(id)sender {
