@@ -15,8 +15,11 @@
 
 -(void)applicationDidFinishLaunching:(UIApplication*)application
 {
+	NSLog(@"application did finish launching");
 	// Add the view controller's view to the window
 	[window addSubview:viewController.view];
+	[window makeKeyAndVisible];
+	NSLog(@"added sub view");
 }
 
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

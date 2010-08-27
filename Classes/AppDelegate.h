@@ -6,6 +6,8 @@
 //  Copyright 2010 dasolute. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface AppDelegate : NSObject<UIApplicationDelegate>
 {
 	UIWindow *window;

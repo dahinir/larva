@@ -95,7 +95,7 @@
 -(void)configureAccelerometer {
     UIAccelerometer*  theAccelerometer = [UIAccelerometer sharedAccelerometer];
 	theAccelerometer.updateInterval = 1 / kAccelerometerFrequency;
-    theAccelerometer.delegate = self;
+    // theAccelerometer.delegate = self;
 	
 	// setting high pass filter
 	filter =[ [[HighpassFilter class] alloc] initWithSampleRate:kAccelerometerFrequency cutoffFrequency:5.0];
@@ -353,6 +353,31 @@
 	[verticalAccuracyLabel setText:[NSString stringWithFormat:@"%gm", sensorData.verticalAccuracy]];
 	//CLLocationDistance distance = [newLocation getDistanceFrom:startingPoint];
 	//[distanceTraveledLabel setText:[NSString stringWithFormat:@"%gm", distance];
+	
+	// remote log
+	if (sampleCount01 == 0) {
+		[logDataString appendString:@"internalId=&ownerId=1&receiverId=2&belongTo=3&writerName=dahini&title=IphoneSensorData&content="];
+		[logDataString appendFormat:@"<updatedGMT>%@</updatedGMT>\n", [NSDate date] ];
+	}
+	sensorDatas[sampleCount01] = sensorData;
+	[logDataString appendFormat:@"%@\n", sensorDatas[sampleCount01].toXMLString];
+	
+	sampleCount01++;
+	if (sampleCount01 == kLogFrequency ) {
+		[logDataString appendString:@"\n\n"];
+		[logDataString appendString:@"&widthPixel=&heighPixel=&horizontalPercent=&verticalPercent="];
+		
+		NSData *logData = [logDataString dataUsingEncoding:NSUTF8StringEncoding];
+		if (client != nil )
+			[client sendPOSTWithData:logData waitForReply:FALSE];
+		
+		[logDataString setString:@""];
+		sampleCount01 = 0;
+		/* 
+		 UIAlertView *myAlert = [[[UIAlertView alloc] initWithTitle:@"100!!" message:@"message" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] autorelease];
+		 [myAlert show];
+		 */
+	}
 }
 
 
@@ -406,6 +431,7 @@
 
 	/* for data log */
 	logDataString = [[NSMutableString alloc] initWithCapacity:1024 ];
+	
 	client = [[HTTPClient alloc] initWithServerURLString:kServerURL];
 	sampleCount01 = 0;
 	sampleCount02 = 0;
