@@ -26,6 +26,8 @@
 	
 	UILabel *testLabel, *testLabel2;
 	
+	BOOL isPaused;
+	
 	/* MotionEstimator */
 	MotionEstimator *motionEstimator;
 	
@@ -107,5 +109,6 @@
 
 - (IBAction) button01pressed:(id)sender;
 - (IBAction) button02pressed:(id)sender;
+- (IBAction) switchButton01pressed:(id)sender;
 
 @end
