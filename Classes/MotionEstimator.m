@@ -11,6 +11,7 @@
 
 @implementation MotionEstimator
 
+@synthesize isPaused;
 @synthesize delegate;
 @synthesize accelerometerFrequency;
 @synthesize sensorData;
@@ -24,6 +25,8 @@
 /* setting default values */
 - (id) init{
 	if (self = [super init]) {
+		isPaused = YES;
+		
 		/* sensorData bean */
 		sensorData = [[SensorData alloc] init];
 		
@@ -53,6 +56,7 @@
 
 /* starting estimation */
 - (void) start{
+	
 	/* Accelerometer */
 	UIAccelerometer* theAccelerometer = [UIAccelerometer sharedAccelerometer];
 	theAccelerometer.updateInterval = 1 / accelerometerFrequency;
@@ -83,6 +87,9 @@
 
 /* This is delegate method(UIAccelerometerDelegate) */
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+	if (isPaused) {
+		return;
+	}
 
 	/* filtering acceleration data */
 	[filter addAcceleration:acceleration];

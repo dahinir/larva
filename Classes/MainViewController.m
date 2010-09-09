@@ -96,6 +96,8 @@
 	// Override point for customization after application launch
 	[window makeKeyAndVisible];
 	[self initVariables];
+	
+	[motionEstimator start];
 	NSLog(@"viewDidLoad");
 }
 
@@ -192,7 +194,7 @@
 /* buttons */
 - (IBAction) button01pressed:(id)sender {
 	NSLog(@"button 01 pressed!!");
-	[motionEstimator start];
+	// [motionEstimator start];
 }
 
 - (IBAction) button02pressed:(id)sender {
@@ -210,8 +212,10 @@
 - (IBAction) switchButton01pressed:(id)sender {
 	if([ ((UISwitch *) sender) isOn] == YES ){
 		NSLog(@"it's on");
+		motionEstimator.isPaused = NO;
 	}else {
 		NSLog(@"it's off");
+		motionEstimator.isPaused = YES;
 	}
 }
 

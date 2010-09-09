@@ -23,6 +23,7 @@
 
 @interface MotionEstimator : NSObject<UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	id delegate;
+	BOOL isPaused;
 	
 	/* for accelerometer */
 	float accelerometerFrequency;
@@ -57,6 +58,7 @@
 	/* share estimated motion by sensor data */
 	SensorData *sensorData;
 }
+@property BOOL isPaused;
 
 @property float accelerometerFrequency;
 @property(readonly) SensorData *sensorData;

@@ -45,7 +45,7 @@
 					<object class="IBUIButton" id="1038867470">
 						<reference key="NSNextResponder" ref="358867937"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{106, 337}, {126, 37}}</string>
+						<string key="NSFrame">{{171, 337}, {66, 37}}</string>
 						<reference key="NSSuperview" ref="358867937"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -58,7 +58,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">init</string>
+						<string key="IBUINormalTitle">test01</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="24971951">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -577,7 +577,7 @@
 					<object class="IBUIButton" id="290884476">
 						<reference key="NSNextResponder" ref="358867937"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{234, 337}, {72, 37}}</string>
+						<string key="NSFrame">{{245, 337}, {61, 37}}</string>
 						<reference key="NSSuperview" ref="358867937"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -586,7 +586,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="395738311"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">test</string>
+						<string key="IBUINormalTitle">test02</string>
 						<reference key="IBUIHighlightedTitleColor" ref="24971951"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -637,7 +637,7 @@
 					<object class="IBUISwitch" id="472424378">
 						<reference key="NSNextResponder" ref="358867937"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 342}, {94, 27}}</string>
+						<string key="NSFrame">{{20, 342}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="358867937"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -918,8 +918,8 @@
 							<reference ref="522710405"/>
 							<reference ref="874392624"/>
 							<reference ref="1038867470"/>
-							<reference ref="290884476"/>
 							<reference ref="472424378"/>
+							<reference ref="290884476"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
