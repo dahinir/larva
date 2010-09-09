@@ -159,18 +159,7 @@
 	sensorData.yAcceleration = yAcceleration;
 	sensorData.zAcceleration = zAcceleration;
 	
-	/*
-	sensorData.trueHeading = trueHeading;
-	sensorData.xTesla = xTesla;
-	sensorData.yTesla = yTesla;
-	sensorData.zTesla = zTesla;
-	
-	sensorData.latitude = latitude;
-	sensorData.longitude = longitude;
-	sensorData.altitude = altitude;
-	sensorData.horizontalAccuracy = horizontalAccuracy;
-	sensorData.verticalAccuracy = verticalAccuracy;
-	*/
+	// estimated
 	sensorData.xVelocity = xVelocity;
 	sensorData.yVelocity = yVelocity;
 	sensorData.zVelocity = zVelocity;

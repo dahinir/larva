@@ -50,8 +50,8 @@
 // Basic filter object. 
 @interface AccelerometerFilter : NSObject
 {
-	BOOL adaptive;
-	UIAccelerationValue x, y, z;
+	BOOL adaptive, medium;
+	UIAccelerationValue x, y, z;	
 }
 
 // Add a UIAcceleration to the filter.
@@ -61,7 +61,7 @@
 @property(nonatomic, readonly) UIAccelerationValue y;
 @property(nonatomic, readonly) UIAccelerationValue z;
 
-@property(nonatomic, getter=isAdaptive) BOOL adaptive;
+@property(nonatomic, getter=isAdaptive) BOOL adaptive, medium;
 @property(nonatomic, readonly) NSString *name;
 
 @end

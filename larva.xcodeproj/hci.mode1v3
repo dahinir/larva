@@ -197,7 +197,50 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>670A6F551238B14D001F60C5</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>MainViewController.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>670A6F701238B947001F60C5</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>MainViewController.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>670A6FAA1238D8EE001F60C5</string>
+						<key>history</key>
+						<array>
+							<string>670A6F8C1238C1BA001F60C5</string>
+							<string>670A6FA81238D8EE001F60C5</string>
+							<string>670A6FA91238D8EE001F60C5</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {863, 701}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>533 136 863 742 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -282,7 +325,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2}, {255, 673}}</string>
+							<string>{{0, 0}, {255, 673}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -319,7 +362,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MotionEstimator.m</string>
+								<string>MediumFilter.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,15 +370,14 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MotionEstimator.m</string>
+										<string>MediumFilter.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>670A6F4012389FFA001F60C5</string>
+										<string>670A6FA71238D8EE001F60C5</string>
 										<key>history</key>
 										<array>
 											<string>67A0736A12278CED00E4C150</string>
-											<string>67A0736F12278CED00E4C150</string>
 											<string>67731D1B122791A600CF15D6</string>
 											<string>6789EC3A1230BE2100FB3D7C</string>
 											<string>6789EC3C1230BE2100FB3D7C</string>
@@ -343,14 +385,18 @@
 											<string>6789EC411230BE2100FB3D7C</string>
 											<string>6789EC421230BE2100FB3D7C</string>
 											<string>6789EC431230BE2100FB3D7C</string>
-											<string>6789EC4F1230C1DC00FB3D7C</string>
-											<string>670A6F3912389FFA001F60C5</string>
-											<string>670A6F3A12389FFA001F60C5</string>
 											<string>670A6F3B12389FFA001F60C5</string>
-											<string>670A6F3C12389FFA001F60C5</string>
-											<string>670A6F3D12389FFA001F60C5</string>
-											<string>670A6F3E12389FFA001F60C5</string>
-											<string>670A6F3F12389FFA001F60C5</string>
+											<string>670A6F631238B947001F60C5</string>
+											<string>670A6F641238B947001F60C5</string>
+											<string>670A6F651238B947001F60C5</string>
+											<string>670A6F661238B947001F60C5</string>
+											<string>670A6F681238B947001F60C5</string>
+											<string>670A6F6B1238B947001F60C5</string>
+											<string>670A6F861238C1BA001F60C5</string>
+											<string>670A6F871238C1BA001F60C5</string>
+											<string>670A6F881238C1BA001F60C5</string>
+											<string>670A6FA51238D8EE001F60C5</string>
+											<string>670A6FA61238D8EE001F60C5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -525,7 +571,7 @@
 	<key>PerspectivesBarVisible</key>
 	<false/>
 	<key>PinnedNavigatorIdentifier</key>
-	<string>6789EC1B1230AF7600FB3D7C</string>
+	<string>670A6F551238B14D001F60C5</string>
 	<key>ShelfIsVisible</key>
 	<false/>
 	<key>SourceDescription</key>
@@ -550,12 +596,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>670A6F4312389FFA001F60C5</string>
+		<string>670A6FAB1238D8EE001F60C5</string>
 		<string>670A6F4412389FFA001F60C5</string>
 		<string>670A6F4512389FFA001F60C5</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6752F1301122BD3800B6785A</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>670A6F551238B14D001F60C5</string>
 		<string>/Users/hci/Documents/larva/larva.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -575,14 +622,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MotionEstimator.m</string>
+								<string>MediumFilter.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -599,6 +644,8 @@
 							<string>328pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

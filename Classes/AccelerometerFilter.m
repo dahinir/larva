@@ -51,7 +51,7 @@
 
 @implementation AccelerometerFilter
 
-@synthesize x, y, z, adaptive;
+@synthesize x, y, z, adaptive, medium;
 
 -(void)addAcceleration:(UIAcceleration*)accel
 {
@@ -84,6 +84,8 @@ double Clamp(double v, double min, double max)
 	else
 		return v;
 }
+
+
 
 // See http://en.wikipedia.org/wiki/Low-pass_filter for details low pass filtering
 @implementation LowpassFilter
