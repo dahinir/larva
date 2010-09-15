@@ -11,12 +11,18 @@
 
 @implementation MediumFilter
 
--(id)initWithMatrixSize:(int)matrixSize {
+// -(id)initWithMatrixSize:(int)matrixSize {
+-(id)init {
 	self = [super init];
 	if (self != nil) {
 		endPoint = 0;
-		kMatrixSize = matrixSize;
-		// rawMatrix = float *rawMatrix[matrixSize];
+		
+		// kMatrixSize = matrixSize;
+		for (int i = 0; i < kMatrixSize; i++) {
+			sortedMatrix[i] = 0;
+			beforeMatrix[i] = 0;
+			afterMatrix[i] = 0;
+		}
 	}
 	return self;
 }
@@ -31,7 +37,7 @@
 }
 
 - (float)update:(float)newValue {
-	rawMatrix[endPoint] = newValue;
+	beforeMatrix[endPoint] = newValue;
 	
 	endPoint = [self nextPointOf:endPoint];
 	
@@ -39,3 +45,4 @@
 }
 
 @end
+

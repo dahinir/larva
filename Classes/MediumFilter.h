@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMatrixSize	5
+#define kMedium	3
+
 
 @interface MediumFilter : NSObject {
 
-	float *rawMatrix;
-	int endPoint, kMatrixSize;
+	float sortedMatrix[kMatrixSize], beforeMatrix[kMatrixSize], afterMatrix[kMatrixSize];
+	int endPoint;
 }
 
 @end
