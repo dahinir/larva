@@ -24,7 +24,7 @@
 {
     UIWindow *window;
 	
-	UILabel *testLabel, *testLabel2;
+	UILabel *testLabel, *testLabel2, *testLabel3, *testLabel4;
 	
 	BOOL isPaused;
 	
@@ -72,6 +72,8 @@
 	BOOL wavePositiveFlag, waveNegativeFlag;
 	float waveIntegral;
 	
+	/* for walking direction */
+	
 	/* for data log */
 	int sampleCount01, sampleCount02, temp;
 	long sampleTime;
@@ -82,7 +84,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet UILabel *testLabel, *testLabel2;
+@property (nonatomic, retain) IBOutlet UILabel *testLabel, *testLabel2, *testLabel3, *testLabel4;
 
 // accelerometer
 @property (nonatomic, retain) IBOutlet UILabel *xDistanceLabel, *yDistanceLabel, *zDistanceLabel;

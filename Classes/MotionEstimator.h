@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "SensorData.h"
+#import "MediumFilter.h"
 
 @class AccelerometerFilter;
 
@@ -28,6 +29,7 @@
 	/* for accelerometer */
 	float accelerometerFrequency;
 	float xAcceleration, yAcceleration, zAcceleration;
+	MediumFilter *mediumX, *mediumY,*mediumZ;
 	
 	/* CoreLocation */
 	CLLocationManager *locationManager;
@@ -54,6 +56,14 @@
 	long wavePositiveTime, waveNegativeTime, lastStepTime;
 	BOOL wavePositiveFlag, waveNegativeFlag;
 	float waveIntegral;
+	
+	/* for walking direction */
+	float relativeNorth;
+	int walkingDirection;	// 1:+y, 2:+x, 3:-y, 4:-x
+	//float lastTrueHeading;
+	
+	/* for location (by walking) */
+	int xLocation, yLocation;
 	
 	/* share estimated motion by sensor data */
 	SensorData *sensorData;

@@ -29,6 +29,10 @@
 	
 	BOOL isStep, isWalking;
 	
+	int walkingDirection;
+	
+	int xLocation, yLocation; 
+	
 	float xVelocity, yVelocity, zVelocity;
 	float xDistance, yDistance, zDistance;
 }
@@ -51,6 +55,8 @@
 @property double latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
 @property BOOL isStep, isWalking;
+@property int walkingDirection;
+@property int xLocation, yLocation;
 
 @property float xVelocity, yVelocity, zVelocity;
 @property float xDistance, yDistance, zDistance;

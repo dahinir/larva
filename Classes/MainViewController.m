@@ -38,8 +38,10 @@
 @synthesize verticalAccuracyLabel;
 @synthesize distanceTraveledLabel;
 
+/* etc labels */
+@synthesize testLabel, testLabel2, testLabel3, testLabel4;
+
 /* network log */
-@synthesize testLabel, testLabel2;
 #define kServerURL	@"http://dasolute.com:8080/example/documents/create.do"
 
 /* local methods */
@@ -152,6 +154,21 @@
 		testLabel.text = [[NSString alloc] initWithFormat:@"STEPED at %ims", sensorData.millisecond ];
 	}
 	testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", sensorData.isWalking?@"YES":@"NO" ];
+	
+	// walking direction view
+	if (sensorData.walkingDirection == 1) {
+		testLabel3.text = @"North";
+	}else if (sensorData.walkingDirection == 2) {
+		testLabel3.text = @"East";
+	}else if (sensorData.walkingDirection == 3) {
+		testLabel3.text = @"South";
+	}else { // if 4
+		testLabel3.text = @"West";
+	}
+
+	// location (by walking)
+	testLabel4.text = [[NSString alloc] initWithFormat:@"( %d, %d)", sensorData.xLocation, sensorData.yLocation];
+
 	
 	// tesla view
 	[trueHeadingLabel setText:[NSString stringWithFormat:@"%.0f°", sensorData.trueHeading]];

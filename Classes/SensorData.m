@@ -23,6 +23,8 @@
 @synthesize latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy;
 
 @synthesize isStep, isWalking;
+@synthesize walkingDirection;
+@synthesize xLocation, yLocation;
 
 @synthesize xVelocity, yVelocity, zVelocity;
 @synthesize xDistance, yDistance, zDistance;

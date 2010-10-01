@@ -125,7 +125,7 @@
     [request setValue:[NSString stringWithFormat:@"%d", [data length]] forHTTPHeaderField:@"Content-Length"];
     MyURLConnection *conn = [[[MyURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 	
-	NSLog(@"sended");
+	// NSLog(@"sended");
 	 
 	if (b) {/*
 		while (![conn isFinished]) {

@@ -9,6 +9,7 @@
 #import "MotionEstimator.h"
 #import "AccelerometerFilter.h"
 
+
 @implementation MotionEstimator
 
 @synthesize isPaused;
@@ -33,6 +34,9 @@
 		/* for accelerometer */
 		accelerometerFrequency = defaultAccelerometerFrequency;
 		xAcceleration = 0; yAcceleration = 0; zAcceleration = 0;
+		mediumX = [[MediumFilter alloc] init];
+		mediumY = [[MediumFilter alloc] init];
+		mediumZ = [[MediumFilter alloc] init];
 		
 		/* for teslameter */
 		xTesla = 0; yTesla = 0; zTesla = 0;
@@ -50,6 +54,15 @@
 		waveNegativeFlag = NO;
 		zAccelerationPrev = 0.0;
 		waveIntegral = 0.0;
+		
+		/* for walking direction */
+		relativeNorth = -1.0;
+		walkingDirection = 1;
+		// lastTrueHeading = 0.0;
+		
+		/* for location (by walking) */
+		xLocation = 0;
+		yLocation = 0;
 	}
 	return self;
 }
@@ -93,9 +106,13 @@
 
 	/* filtering acceleration data */
 	[filter addAcceleration:acceleration];
-	xAcceleration = filter.x;
+	/* xAcceleration = filter.x;
 	yAcceleration = filter.y;
 	zAcceleration = filter.z;
+	 */
+	xAcceleration = [mediumX update:filter.x];
+	yAcceleration = [mediumY update:filter.y];
+	zAcceleration = [mediumZ update:filter.z];
 	
 	/* estimate velocity */
 	xVelocity = xVelocity + xAcceleration * 1/accelerometerFrequency;
@@ -148,10 +165,27 @@
 	zAccelerationPrev = zAcceleration;
 	// testLabel2.text = [[NSString alloc] initWithFormat:@"is waling? %@", isWalking?@"YES":@"NO" ];
 
+	// location estimate (by walking)
+	if (isStep) {
+		if (walkingDirection == 1)
+			yLocation = yLocation + 50;
+		else if (walkingDirection == 2) 
+			xLocation = xLocation + 50;
+		else if (walkingDirection == 3)
+			yLocation = yLocation - 50;
+		else 
+			xLocation = xLocation -50;
+	}
 	
-	// setting value
+	/* setting value */
 	sensorData.isStep = isStep;
 	sensorData.isWalking = isWalking;
+	
+	sensorData.walkingDirection = walkingDirection;
+	
+	sensorData.xLocation = xLocation;
+	sensorData.yLocation = yLocation;
+	
 	// sensorData.sampleCount = sampleCount01;
 	sensorData.millisecond = sampleTime;
 	
@@ -168,6 +202,12 @@
 	sensorData.yDistance = yDistance;
 	sensorData.zDistance = zDistance;
 	
+	// tesla
+	sensorData.xTesla = xTesla;
+	sensorData.yTesla = yTesla;
+	sensorData.zTesla = zTesla;
+	sensorData.trueHeading = trueHeading;
+	/* end of setting values */
 	
 	/* invoke delegate */
 	if(delegate && [delegate respondsToSelector:@selector(sensorDataChanged:)] )
@@ -178,11 +218,36 @@
 /* This is delegate method(CLLocationManagerDelegate) */
 // This delegate method is invoked when the location manager has heading data.
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
+	// init relative north
+	if ( relativeNorth == -1.0) {
+		relativeNorth = heading.trueHeading;
+	}
+	
+	float tempHead = heading.trueHeading - relativeNorth;
+	if (tempHead < 0.0) {
+		tempHead = tempHead + 360.0;
+	}
+
     // Update the labels with the raw x, y, and z values.
-	sensorData.trueHeading  = heading.trueHeading;
-	sensorData.xTesla = heading.x;
-	sensorData.yTesla = heading.y;
-	sensorData.zTesla = heading.z;
+	if ( tempHead > 315.0 | tempHead <= 45.0  ) {
+		walkingDirection = 1;	// relative north
+	}else if ( tempHead > 45.0 & tempHead <= 135.0 ) {
+		walkingDirection = 2;	// relative east
+	}else if ( tempHead > 135.0 & tempHead <= 225.0 ) {
+		walkingDirection = 3;	// relative south
+	}else { // if (tempHead > 225.0 & tempHead <= 315.0)
+		walkingDirection = 4;	// relative west
+	}
+	
+	NSLog(@"direction: %d, tempHead: %f", walkingDirection, tempHead);
+
+	
+	trueHeading  = heading.trueHeading;
+	xTesla = heading.x;
+	yTesla = heading.y;
+	zTesla = heading.z;
+	
+	//lastTrueHeading = heading.trueHeading;
 }
 
 // This delegate method is invoked when the location managed encounters an error condition.
